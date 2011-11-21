@@ -4,9 +4,11 @@
 package br.furb.diswah.model;
 
 /**
- * @author andre.almeida
- *
+ * 
+ * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class User {
+public class User extends BasicEntity {
 
+	
+	
 }
