@@ -1,11 +1,16 @@
 package br.furb.diswah.model;
 
+import br.furb.diswah.model.enums.MeasurementUnit;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public class Product extends BasicEntity{
 
+	
+	private Long id;
+	
 	private Long code;
 	
 	private String name;
@@ -15,6 +20,14 @@ public class Product extends BasicEntity{
 	private MeasurementUnit measurementUnit;
 	
 	private Classification classification;
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getCode() {
 		return code;

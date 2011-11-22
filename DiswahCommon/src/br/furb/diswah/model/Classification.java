@@ -6,11 +6,21 @@ package br.furb.diswah.model;
  */
 public class Classification extends BasicEntity {
 
+	private Long id;
+	
 	private Long code;
 	
 	private String name;
 	
 	private String description;
+
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getCode() {
 		return code;
