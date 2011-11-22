@@ -1,18 +1,38 @@
 package br.furb.diswah.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.AccessType;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
+@Entity
+@AccessType("field")
+@Table(name = "classification")
+@SequenceGenerator(name = "sq_classification", sequenceName = "sq_classification")
 public class Classification extends BasicEntity {
 
-	private Long id;
+	@Id
+    @GeneratedValue(generator = "sq_classification", strategy = GenerationType.AUTO)
+    @Column(name = "id_classification", nullable = false)
+    private Long id;
 	
-	private Long code;
+	@Column(name="cd_classification", nullable=false)
+    private Long code;
 	
-	private String name;
+	@Column(name = "ds_name", nullable = false, length = 40)
+    private String name;
 	
-	private String description;
+	@Column(name = "ds_description", nullable = false, length = 200)
+    private String description;
 
 	public Long getId() {
 		return id;

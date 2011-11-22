@@ -25,14 +25,15 @@ public class User extends BasicEntity {
     @Column(name = "id_user", nullable = false)
 	private Long id;
 	
-	private String login;
+    @Column(name = "ds_login", nullable = false, length = 30)
+    private String login;
 	
-	private String password;
+    @Column(name = "ds_password", nullable = false, length = 30)
+    private String password;
 	
-	private String email;
+    @Column(name = "ds_email", nullable = false, length = 30)
+    private String email;
 	
-	private Boolean active;
-
 	public Long getId() {
 		return id;
 	}
@@ -65,12 +66,4 @@ public class User extends BasicEntity {
 		this.email = email;
 	}
 
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
-	
 }
