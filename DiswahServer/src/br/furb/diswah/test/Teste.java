@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import br.furb.diswah.model.Classification;
-import br.furb.diswah.model.Product;
 import br.furb.diswah.model.User;
 
 /**
@@ -25,6 +24,7 @@ public class Teste {
 
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("deprecation")
 	protected void setUp() throws Exception {
 		// A SessionFactory is set up once for an application
         sessionFactory = new Configuration()
@@ -56,7 +56,8 @@ public class Teste {
 
 		session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery( "from User" ).list();
+        @SuppressWarnings("rawtypes")
+		List result = session.createQuery( "from User" ).list();
 		for ( User user : (List<User>) result ) {
 			System.out.println( "User :" + user.getId() );
 		}
