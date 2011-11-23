@@ -14,5 +14,10 @@
 	<classpathentry kind="lib" path="lib/javassist-3.12.1.GA.jar"/>
 	<classpathentry kind="lib" path="lib/jboss-logging-3.1.0.CR1.jar"/>
 	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator-annotation-processor-4.2.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator-4.2.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator-4.2.0.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.AccessType;
@@ -17,11 +16,10 @@ import org.hibernate.annotations.AccessType;
 @Entity
 @AccessType("field")
 @Table(name = "classification")
-@SequenceGenerator(name = "sq_classification", sequenceName = "sq_classification")
 public class Classification extends BasicEntity {
 
 	@Id
-    @GeneratedValue(generator = "sq_classification", strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_classification", nullable = false)
     private Long id;
 	

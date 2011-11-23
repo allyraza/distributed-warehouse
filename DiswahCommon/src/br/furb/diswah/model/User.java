@@ -17,11 +17,10 @@ import org.hibernate.annotations.AccessType;
 @Entity
 @AccessType("field")
 @Table(name = "user")
-@SequenceGenerator(name = "sq_user", sequenceName = "sq_user")
 public class User extends BasicEntity {
 
 	@Id
-    @GeneratedValue(generator = "sq_user", strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_user", nullable = false)
 	private Long id;
 	

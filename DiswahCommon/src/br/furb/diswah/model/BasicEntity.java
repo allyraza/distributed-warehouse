@@ -20,13 +20,13 @@ import br.furb.diswah.model.enums.Status;
 @MappedSuperclass
 public abstract class BasicEntity implements Serializable {
 
-	@Enumerated(EnumType.STRING)
-    @Column(name="fl_status", length=1)
-	private Status status;
+	@Enumerated(EnumType.ORDINAL)
+    @Column(name="fl_status", length=1, nullable=false)
+	private Status status = Status.ACTIVE;
 	
     @Temporal(TemporalType.DATE)
-    @Column(name="dt_creation")
-    private Date creation;
+    @Column(name="dt_creation", nullable=false)
+    private Date creation = new Date();
 	
     @Temporal(TemporalType.DATE)
     @Column(name="dt_alter")

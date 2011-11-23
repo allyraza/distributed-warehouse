@@ -13,9 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.AccessType;
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.validator.constraints.NotBlank;
 
 import br.furb.diswah.model.enums.MeasurementUnit;
 
@@ -26,21 +28,22 @@ import br.furb.diswah.model.enums.MeasurementUnit;
 @Entity
 @AccessType("field")
 @Table(name = "product")
-@SequenceGenerator(name = "sq_product", sequenceName = "sq_product")
 public class Product extends BasicEntity{
 
-	
 	@Id
-    @GeneratedValue(generator = "sq_product", strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_product", nullable = false)
     private Long id;
-	
+
+	@NotNull
 	@Column(name="cd_product", nullable=false)
     private Long code;
 	
+	@NotBlank
 	@Column(name = "ds_name", nullable = false, length = 40)
     private String name;
 	
+	@NotBlank
 	@Column(name = "ds_description", nullable = false, length = 200)
     private String description;
 	
@@ -48,6 +51,7 @@ public class Product extends BasicEntity{
     @Column(name="tp_measurement_unit", length=1)
 	private MeasurementUnit measurementUnit;
 	
+	@NotNull
     @ForeignKey(name="fk_product_classification")
     @ManyToOne(targetEntity= Classification.class, cascade= CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name="classification_id_classification", nullable=false)
