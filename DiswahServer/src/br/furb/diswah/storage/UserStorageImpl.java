@@ -8,6 +8,9 @@ import br.furb.diswah.model.User;
  */
 public class UserStorageImpl extends AbstractEntityStorage<User> implements UserStorage {
 
-	
+	@Override
+	public Class<User> getEntityClass() {
+		return User.class;
+	}
 
 }

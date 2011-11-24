@@ -8,6 +8,9 @@ import br.furb.diswah.model.Product;
  */
 public class ProductStorageImpl extends AbstractEntityStorage<Product> implements ProductStorage {
 
-	
+	@Override
+	public Class<Product> getEntityClass() {
+		return Product.class;
+	}
 	
 }

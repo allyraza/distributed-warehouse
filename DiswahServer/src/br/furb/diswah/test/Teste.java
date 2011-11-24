@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 
 import br.furb.diswah.model.Classification;
 import br.furb.diswah.model.User;
+import br.furb.diswah.storage.UserStorageImpl;
 
 /**
  * 
@@ -16,10 +17,22 @@ import br.furb.diswah.model.User;
 public class Teste {
 	
 	public static void main(String[] args) throws Exception {
-		Teste t = new Teste();
+		/*Teste t = new Teste();
 		t.setUp();
 		t.testBasicUsage();
-		t.tearDown();
+		t.tearDown();*/
+		
+		User u = new User();
+		u.setEmail("email@email");
+		u.setLogin("login");
+		u.setPassword("login");
+		
+		for(User user :new UserStorageImpl().list()){
+			System.out.println(user.getId() + user.getLogin());
+		}
+		
+		System.out.println(new UserStorageImpl().save(u).getId());
+		
 	}
 
 	private SessionFactory sessionFactory;
@@ -46,8 +59,8 @@ public class Teste {
 		//session.save( new User() );
 		Classification c = new Classification();
 		c.setCode(1l);
-		c.setName("QUE MERDA");
-		c.setDescription("Chupa meu pau!@!!");
+		c.setName("Joao");
+		c.setDescription("Descricao 123");
 		session.save( c );
 		//session.save( new Product() );
 		

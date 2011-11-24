@@ -21,4 +21,6 @@ public interface EntityStorage<T extends BasicEntity> {
 
 	List<T> list();
 	
+	T delete(T value);
+	
 }

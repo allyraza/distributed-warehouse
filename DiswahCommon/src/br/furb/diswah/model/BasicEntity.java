@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -20,8 +19,8 @@ import br.furb.diswah.model.enums.Status;
 @MappedSuperclass
 public abstract class BasicEntity implements Serializable {
 
-	@Enumerated(EnumType.ORDINAL)
-    @Column(name="fl_status", length=1, nullable=false)
+	@Enumerated
+    @Column(name="fl_status", nullable=false)
 	private Status status = Status.ACTIVE;
 	
     @Temporal(TemporalType.DATE)

@@ -8,6 +8,9 @@ import br.furb.diswah.model.Classification;
  */
 public class ClassificationStorageImpl extends AbstractEntityStorage<Classification> implements ClassificationStorage {
 
-	
+	@Override
+	public Class<Classification> getEntityClass() {
+		return Classification.class;
+	}
 
 }

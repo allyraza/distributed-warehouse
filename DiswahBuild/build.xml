@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="build-all" default="build-all" basedir=".">
+
+	<!-- propriedades do projeto com os nomes dos diretórios -->
+	<import file="../DiswahCommon/build.xml"/>
+	<import file="../DiswahServer/build.xml"/>
+	<import file="../DiswahServerRPC/build.xml"/>
+	<import file="../DiswahServerRMI/build.xml"/>
+	<import file="../DiswahClient/build.xml"/>
+
+	<target name="build-all">
+		<antcall target="build-common" />
+		<antcall target="build-client" />
+		<antcall target="build-server" />
+		<antcall target="build-server-rpc" />
+		<antcall target="build-server-rmi" />
+	</target>
+	
+</project>

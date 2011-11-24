@@ -3,7 +3,6 @@ package br.furb.diswah.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -46,8 +45,8 @@ public class Product extends BasicEntity{
 	@Column(name = "ds_description", nullable = false, length = 200)
     private String description;
 	
-	@Enumerated(EnumType.ORDINAL)
-    @Column(name="tp_measurement_unit", length=1)
+	@Enumerated
+    @Column(name="tp_measurement_unit")
 	private MeasurementUnit measurementUnit;
 	
 	@NotNull
