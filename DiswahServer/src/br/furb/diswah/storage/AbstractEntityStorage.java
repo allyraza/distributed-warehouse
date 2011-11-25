@@ -1,5 +1,7 @@
 package br.furb.diswah.storage;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,7 +14,14 @@ import br.furb.diswah.model.BasicEntity;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractEntityStorage<T extends BasicEntity> implements EntityStorage<T>{
+public abstract class AbstractEntityStorage<T extends BasicEntity> extends UnicastRemoteObject implements EntityStorage<T>{
+
+	/**
+	 * @throws RemoteException
+	 */
+	protected AbstractEntityStorage() throws RemoteException {
+		super();
+	}
 
 	@Override
 	public void validate(T value) throws ValidationException {

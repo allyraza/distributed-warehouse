@@ -1,5 +1,7 @@
 package br.furb.diswah.service;
 
+import java.rmi.RemoteException;
+
 import br.furb.diswah.exception.BusinessException;
 import br.furb.diswah.model.User;
 
@@ -7,7 +9,14 @@ import br.furb.diswah.model.User;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl extends BaseService implements LoginService {
+
+	/**
+	 * @throws RemoteException
+	 */
+	protected LoginServiceImpl() throws RemoteException {
+		super();
+	}
 
 	@Override
 	public User login(String login, String password) throws BusinessException {
