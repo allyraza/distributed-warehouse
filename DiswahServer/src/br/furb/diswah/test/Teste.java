@@ -8,7 +8,6 @@ import org.hibernate.cfg.Configuration;
 
 import br.furb.diswah.model.Classification;
 import br.furb.diswah.model.User;
-import br.furb.diswah.storage.UserStorageImpl;
 
 /**
  * 
@@ -27,11 +26,11 @@ public class Teste {
 		u.setLogin("login");
 		u.setPassword("login");
 		
-		for(User user :new UserStorageImpl().list()){
+		/*for(User user :new UserStorageImpl().list()){
 			System.out.println(user.getId() + user.getLogin());
 		}
 		
-		System.out.println(new UserStorageImpl().save(u).getId());
+		System.out.println(new UserStorageImpl().save(u).getId());*/
 		
 	}
 

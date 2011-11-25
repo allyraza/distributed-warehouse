@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="build-common" default="build-common" basedir="DiswahCommon">
+<project name="build-common" default="build-common" basedir=".">
 
 	<!-- propriedades do projeto com os nomes dos diretórios -->
 
@@ -20,7 +20,9 @@
 
 	<target name="compile" depends="init">
 		<echo> Compilando o projeto.</echo>
-		<javac classpath="lib" srcdir="${src}" destdir="${build}" />
+		<javac classpath="lib" srcdir="${src}" destdir="${build}">
+			<src path="lib"/>
+		</javac>
 	</target>
 
 	<!-- target dist - target responsável por gerar o .jar executável do projéto no diretório dist. -->

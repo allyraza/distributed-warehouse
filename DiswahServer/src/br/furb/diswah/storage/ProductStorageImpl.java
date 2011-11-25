@@ -1,5 +1,7 @@
 package br.furb.diswah.storage;
 
+import java.rmi.RemoteException;
+
 import br.furb.diswah.model.Product;
 
 /**
@@ -7,6 +9,13 @@ import br.furb.diswah.model.Product;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public class ProductStorageImpl extends AbstractEntityStorage<Product> implements ProductStorage {
+
+	/**
+	 * @throws RemoteException
+	 */
+	protected ProductStorageImpl() throws RemoteException {
+		super();
+	}
 
 	@Override
 	public Class<Product> getEntityClass() {

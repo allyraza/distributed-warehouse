@@ -16,7 +16,7 @@ public class TransportTest {
 		BasicTransport basTransport = TransportFactory.createCommunication(null, TransportMethod.RMI);
 		
 		UserStorage u = basTransport.requestInterface(UserStorage.class, new Object[]{});
-		System.out.println(";D");
+		System.out.println(u);
 	}
 
 }
