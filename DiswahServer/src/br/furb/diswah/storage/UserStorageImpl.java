@@ -13,7 +13,7 @@ public class UserStorageImpl extends AbstractEntityStorage<User> implements User
 	/**
 	 * @throws RemoteException
 	 */
-	protected UserStorageImpl() throws RemoteException {
+	public UserStorageImpl() throws RemoteException {
 		super();
 	}
 

@@ -1,0 +1,5 @@
+e:
+cd Desenvolvimento\ws_geral\DiswahServer\bin
+set classpath=.;../../DiswahCommon/bin
+rmic br.furb.diswah.storage*
+start java br.furb.diswah.main.MainServer

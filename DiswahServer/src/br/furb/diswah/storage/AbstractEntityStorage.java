@@ -24,11 +24,11 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 	}
 
 	@Override
-	public void validate(T value) throws ValidationException {
+	public void validate(T value) throws RemoteException {
 	}
 
 	@Override
-	public T find(Long id) {
+	public T find(Long id) throws RemoteException {
 		Session session = HibernateSessionFactory.openSession();
 		T value = (T) session.createQuery("from " + getEntityClass().getCanonicalName() + " obj where obj.id="+id).uniqueResult();
 		HibernateSessionFactory.closeSession();
@@ -36,7 +36,7 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 	}
 
 	@Override
-	public T save(T value) {
+	public T save(T value) throws RemoteException {
 		Session session = HibernateSessionFactory.openSession();
 		session.save(value);
 		HibernateSessionFactory.closeSession();
@@ -44,7 +44,7 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 	}
 
 	@Override
-	public List<T> saveAll(List<T> values) {
+	public List<T> saveAll(List<T> values) throws RemoteException {
 		for(T t : values)
 			save(t);
 		
@@ -52,7 +52,7 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 	}
 
 	@Override
-	public List<T> list() {
+	public List<T> list() throws RemoteException {
 		Session session = HibernateSessionFactory.openSession();
 		List<T> list = session.createQuery("from " + getEntityClass().getCanonicalName()).list();
 		HibernateSessionFactory.closeSession();
@@ -60,7 +60,7 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 	}
 	
 	@Override
-	public T delete(T value) {
+	public T delete(T value) throws RemoteException {
 		Session session = HibernateSessionFactory.openSession();
 		session.delete(value);
 		HibernateSessionFactory.closeSession();

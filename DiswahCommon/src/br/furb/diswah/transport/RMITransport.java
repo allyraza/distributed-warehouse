@@ -29,7 +29,7 @@ public class RMITransport extends BasicTransport {
 	 * @return
 	 */
 	private <T> String getLookupName(Class<T> target) {
-		return String.format("//%s/s",getProperties().getHost(), target.getName());
+		return String.format("//%s/%s",getProperties().getHost(), target.getName());
 	}
 
 }

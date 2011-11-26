@@ -21,7 +21,7 @@
 	<target name="compile" depends="init">
 		<echo> Compilando o projeto.</echo>
 		<javac classpath="lib" srcdir="${src}" destdir="${build}">
-			<src path="lib"/>
+			<classpath path="lib/**.jar" />
 		</javac>
 	</target>
 
