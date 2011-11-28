@@ -5,6 +5,10 @@ package br.furb.diswah.transport;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public class TransportFactory {
+	
+	static{
+		System.setSecurityManager(null);
+	}
 
 	public static BasicTransport createCommunication(TransportProperties properties, TransportMethod method) {
 		switch (method) {

@@ -6,8 +6,8 @@ import br.furb.diswah.model.User;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public interface UserStorage extends EntityStorage<User>{
-
+public interface UserStorage extends EntityStorage<User> {
+	
 	
 	
 }

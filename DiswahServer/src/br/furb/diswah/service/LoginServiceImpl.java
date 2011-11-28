@@ -14,7 +14,7 @@ public class LoginServiceImpl extends BaseService implements LoginService {
 	/**
 	 * @throws RemoteException
 	 */
-	protected LoginServiceImpl() throws RemoteException {
+	public LoginServiceImpl() throws RemoteException {
 		super();
 	}
 

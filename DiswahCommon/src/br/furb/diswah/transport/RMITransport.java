@@ -1,6 +1,7 @@
 package br.furb.diswah.transport;
 
-import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import br.furb.diswah.exception.CommunicationException;
 
@@ -18,18 +19,12 @@ public class RMITransport extends BasicTransport {
 	@SuppressWarnings("unchecked")
 	public <T> T requestInterface(Class<T> target, Object[] params) throws CommunicationException{
 		try {
-			return (T) Naming.lookup(getLookupName(target));
+			Registry registry = LocateRegistry.getRegistry(getProperties().getHost());
+			return (T) registry.lookup(target.getSimpleName());
 		} catch (Exception e) {
-			throw new CommunicationException(String.format("Não foi possível encontrar a interface '%s'", target.getName()), e);
+			throw new CommunicationException(String.format("Não foi possível encontrar a interface '%s'",  target.getName()), e);
 		}
 		
-	}
-
-	/**
-	 * @return
-	 */
-	private <T> String getLookupName(Class<T> target) {
-		return String.format("//%s/%s",getProperties().getHost(), target.getName());
 	}
 
 }

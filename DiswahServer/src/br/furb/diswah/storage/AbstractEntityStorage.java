@@ -2,11 +2,11 @@ package br.furb.diswah.storage;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 
-import br.furb.diswah.exception.ValidationException;
 import br.furb.diswah.model.BasicEntity;
 
 /**
@@ -37,10 +37,34 @@ public abstract class AbstractEntityStorage<T extends BasicEntity> extends Unica
 
 	@Override
 	public T save(T value) throws RemoteException {
+		
+		beforeSave(value);
+		
+		if(value.getId() != null && value.getId() != 0)
+			value.setAlter(new Date());
+		
 		Session session = HibernateSessionFactory.openSession();
 		session.save(value);
 		HibernateSessionFactory.closeSession();
+		
+		afterSave(value);
 		return value;
+	}
+
+	/**
+	 * Método executado antes da operação de salvar.
+	 * 
+	 * @param value
+	 */
+	protected void beforeSave(T value) {
+	}
+	
+	/**
+	 * Método executado após a operação de salvar.
+	 * 
+	 * @param value
+	 */
+	protected void afterSave(T value) {
 	}
 
 	@Override

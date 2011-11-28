@@ -29,7 +29,7 @@ import br.furb.diswah.model.enums.MeasurementUnit;
 public class Product extends BasicEntity{
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_product", nullable = false)
     private Long id;
 

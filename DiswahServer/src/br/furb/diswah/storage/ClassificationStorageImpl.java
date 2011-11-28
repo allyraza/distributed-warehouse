@@ -13,7 +13,7 @@ public class ClassificationStorageImpl extends AbstractEntityStorage<Classificat
 	/**
 	 * @throws RemoteException
 	 */
-	protected ClassificationStorageImpl() throws RemoteException {
+	public ClassificationStorageImpl() throws RemoteException {
 		super();
 	}
 

@@ -1,13 +1,12 @@
 package br.furb.diswah.test;
 
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
 import br.furb.diswah.model.Classification;
+import br.furb.diswah.model.Product;
 import br.furb.diswah.model.User;
+import br.furb.diswah.model.enums.MeasurementUnit;
+import br.furb.diswah.storage.ClassificationStorageImpl;
+import br.furb.diswah.storage.ProductStorageImpl;
+import br.furb.diswah.storage.UserStorageImpl;
 
 /**
  * 
@@ -16,64 +15,33 @@ import br.furb.diswah.model.User;
 public class Teste {
 	
 	public static void main(String[] args) throws Exception {
-		/*Teste t = new Teste();
-		t.setUp();
-		t.testBasicUsage();
-		t.tearDown();*/
-		
+
 		User u = new User();
 		u.setEmail("email@email");
 		u.setLogin("login");
 		u.setPassword("login");
+		System.out.println(new UserStorageImpl().save(u).getId());
 		
-		/*for(User user :new UserStorageImpl().list()){
+		for(User user :new UserStorageImpl().list()){
 			System.out.println(user.getId() + user.getLogin());
 		}
 		
-		System.out.println(new UserStorageImpl().save(u).getId());*/
+		Classification classification = new Classification();
+		classification.setCode(1l);
+		classification.setDescription("A Classification");
+		classification.setName("A Classification");
+		System.out.println(new ClassificationStorageImpl().save(classification).getId());
 		
-	}
-
-	private SessionFactory sessionFactory;
-
-	@SuppressWarnings("deprecation")
-	protected void setUp() throws Exception {
-		// A SessionFactory is set up once for an application
-        sessionFactory = new Configuration()
-                .configure() // configures settings from hibernate.cfg.xml
-                .buildSessionFactory();
-	}
-
-	protected void tearDown() throws Exception {
-		if ( sessionFactory != null ) {
-			sessionFactory.close();
-		}
-	}
-
-	@SuppressWarnings({ "unchecked" })
-	public void testBasicUsage() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-
-		//session.save( new User() );
-		Classification c = new Classification();
-		c.setCode(1l);
-		c.setName("Joao");
-		c.setDescription("Descricao 123");
-		session.save( c );
-		//session.save( new Product() );
+		Product prod = new Product();
+		prod.setMeasurementUnit(MeasurementUnit.BOX);
+		prod.setClassification(classification);
+		prod.setCode(1l);
+		prod.setDescription("Uma caixa de algo");
+		prod.setName("Leite");
+		System.out.println(new ProductStorageImpl().save(prod).getId());
 		
-		session.getTransaction().commit();
-		session.close();
-
-		session = sessionFactory.openSession();
-        session.beginTransaction();
-        @SuppressWarnings("rawtypes")
-		List result = session.createQuery( "from User" ).list();
-		for ( User user : (List<User>) result ) {
-			System.out.println( "User :" + user.getId() );
-		}
-        session.getTransaction().commit();
-        session.close();
+		
+		System.exit(0);
 	}
+	
 }
