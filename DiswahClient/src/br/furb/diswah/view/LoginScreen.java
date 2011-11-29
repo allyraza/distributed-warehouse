@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -124,7 +125,10 @@ public class LoginScreen extends JFrame{
 														   .requestInterface(LoginService.class, new Object[]{});
 					service.login(tfLogin.getText(), pfPassword.getText());
 				} catch (Throwable e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(LoginScreen.this, 
+												  e.getCause().getMessage(),
+												  MessageBundle.getMessage("modal.title.error"),
+												  JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

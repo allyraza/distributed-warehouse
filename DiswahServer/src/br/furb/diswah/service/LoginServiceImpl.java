@@ -3,6 +3,8 @@ package br.furb.diswah.service;
 import java.rmi.RemoteException;
 
 import br.furb.diswah.model.User;
+import br.furb.diswah.resource.MessageBundle;
+import br.furb.diswah.storage.UserStorageImpl;
 
 /**
  * 
@@ -19,8 +21,12 @@ public class LoginServiceImpl extends BaseService implements LoginService {
 
 	@Override
 	public User login(String login, String password) throws RemoteException {
-		// TODO Auto-generated method stub
-		throw new RemoteException("Not implemented yet.");
+		User user = new UserStorageImpl().logUser(login, password);
+
+		if(user == null)
+			throw new RemoteException(MessageBundle.getMessage("service.login.error.notfound"));
+		
+		return user;
 	}
 
 }
