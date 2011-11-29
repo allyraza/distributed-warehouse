@@ -2,7 +2,6 @@ package br.furb.diswah.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -61,11 +60,15 @@ public class LoginScreen extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(MessageBundle.getMessage("frame.login.title"));
+		setIconImage(new ImageIcon(ClassLoader.getSystemResource("warehouse.png")).getImage());
 		
 		setLayout(new MigLayout("insets 10","grow","grow"));
 		setMinimumSize(new Dimension(300, 300));
         setResizable(false);
-        setLocation(new Point(300,200));
+        
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dialogSize = getSize();
+        setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
 	}
 	
 	/**
