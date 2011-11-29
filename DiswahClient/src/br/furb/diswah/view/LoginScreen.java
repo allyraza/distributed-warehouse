@@ -1,10 +1,12 @@
 package br.furb.diswah.view;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +29,8 @@ import br.furb.diswah.transport.TransportProperties;
 public class LoginScreen extends JFrame{
 	
 	private JPanel pnPrincipal;
+	
+	private JLabel lbLogo;
 	
 	private JLabel lbLogin;
 	private JTextField tfLogin;
@@ -58,8 +62,8 @@ public class LoginScreen extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(MessageBundle.getMessage("frame.login.title"));
 		
-		setLayout(new MigLayout("debug, insets 10","grow","grow"));
-		setMinimumSize(new Dimension(407, 295));
+		setLayout(new MigLayout("insets 10","grow","grow"));
+		setMinimumSize(new Dimension(300, 300));
         setResizable(false);
         setLocation(new Point(300,200));
 	}
@@ -68,18 +72,43 @@ public class LoginScreen extends JFrame{
 	 * 
 	 */
 	private void createComponents() {
-		pnPrincipal = new JPanel(new MigLayout("debug, insets 10","[align right][grow]","grow"));
+		pnPrincipal = new JPanel(new MigLayout("insets 10","[align right, 50::][grow]","grow"));
+		
+		pnPrincipal.add(createLogo(),"span, align center, wrap");
 		
 		lbLogin = new JLabel(MessageBundle.getMessage("frame.login.label.login"));
 		pnPrincipal.add(lbLogin);
 		tfLogin = new JTextField();
-		pnPrincipal.add(tfLogin, "wrap");
+		pnPrincipal.add(tfLogin, "w 180,wrap");
 		
 		lbPassword = new JLabel(MessageBundle.getMessage("frame.login.label.password"));
 		pnPrincipal.add(lbPassword);
 		pfPassword = new JPasswordField();
-		pnPrincipal.add(pfPassword, "wrap");
+		pnPrincipal.add(pfPassword, "w 180,wrap");
 
+		pnPrincipal.add(createButtons(),"span, align center");
+		
+		this.add(pnPrincipal,"grow");
+	}
+	
+	/**
+	 * @return
+	 */
+	private Component createLogo() {
+		JPanel pnLogo = new JPanel(new MigLayout("","grow","grow"));
+		
+		lbLogo = new JLabel(new ImageIcon(ClassLoader.getSystemResource("warehouse.png")));
+		pnLogo.add(lbLogo);
+		
+		return pnLogo;
+	}
+
+	/**
+	 * 
+	 */
+	private JPanel createButtons() {
+		JPanel pnButtons = new JPanel(new MigLayout("","[align right]10[align left]","grow"));
+		
 		btLogin = new JButton(MessageBundle.getMessage("frame.login.button.login"));
 		btLogin.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -96,7 +125,7 @@ public class LoginScreen extends JFrame{
 				}
 			}
 		});
-		pnPrincipal.add(btLogin);
+		pnButtons.add(btLogin);
 		
 		btCancel = new JButton(MessageBundle.getMessage("frame.login.button.cancel"));
 		btCancel.addActionListener(new ActionListener() {
@@ -105,11 +134,11 @@ public class LoginScreen extends JFrame{
 				System.exit(0);
 			}
 		});
-		pnPrincipal.add(btCancel);
+		pnButtons.add(btCancel);
 		
-		this.add(pnPrincipal,"grow");
+		return pnButtons;
 	}
-	
+
 	public static void main(String[] args) {
 		new LoginScreen().setVisible(true);
 	}
