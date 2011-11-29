@@ -1,23 +1,17 @@
 package br.furb.diswah.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
-import napkin.NapkinBorders;
-import napkin.NapkinLookAndFeel;
-import napkin.NapkinTextFieldUI;
 import net.miginfocom.layout.AC;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
@@ -32,6 +26,8 @@ import br.furb.diswah.transport.TransportProperties;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public class LoginScreen extends JFrame{
+	
+	private JPanel pnPrincipal;
 	
 	private JLabel lbLogin;
 	private JTextField tfLogin;
@@ -52,7 +48,7 @@ public class LoginScreen extends JFrame{
 	 */
 	private void configFrame() {
 		try {
-			//UIManager.setLookAndFeel(new NapkinLookAndFeel());
+			//UIManager.setLookAndFeel(nlaf);
 		} catch (Exception e) {
 			System.err.println("Ocorreu um erro ao carregar o look and feel.");
 		}
@@ -68,21 +64,17 @@ public class LoginScreen extends JFrame{
 	 * 
 	 */
 	private void createComponents() {
-		// TODO Auto-generated method stub
-		
-		JPanel panel = new JPanel(new MigLayout("debug, insets 10","[align right][grow]","grow"));
-		panel.setBorder(NapkinBorders.getButtonBorder());
-		
+		pnPrincipal = new JPanel(new MigLayout("debug, insets 10","[align right][grow]","grow"));
 		
 		lbLogin = new JLabel(MessageBundle.getInstance().getMessage("frame.login.label.login"));
-		panel.add(lbLogin);
+		pnPrincipal.add(lbLogin);
 		tfLogin = new JTextField();
-		panel.add(tfLogin, "growx,wrap");
+		pnPrincipal.add(tfLogin, "growx,wrap");
 		
 		lbPassword = new JLabel(MessageBundle.getInstance().getMessage("frame.login.label.password"));
-		panel.add(lbPassword);
+		pnPrincipal.add(lbPassword);
 		pfPassword = new JPasswordField();
-		panel.add(pfPassword, "growx,wrap");
+		pnPrincipal.add(pfPassword, "growx,wrap");
 
 		btLogin = new JButton(MessageBundle.getInstance().getMessage("frame.login.button.login"));
 		btLogin.addActionListener(new ActionListener() {
@@ -100,15 +92,16 @@ public class LoginScreen extends JFrame{
 				}
 			}
 		});
-		panel.add(btLogin,"");
+		pnPrincipal.add(btLogin,"");
 		
 		btCancel = new JButton(MessageBundle.getInstance().getMessage("frame.login.button.cancel"));
-		panel.add(btCancel);
+		pnPrincipal.add(btCancel);
 		
-		this.add(panel,"grow");
+		this.add(pnPrincipal,"grow");
 	}
 	
 	public static void main(String[] args) {
 		new LoginScreen().setVisible(true);
 	}
+	
 }
