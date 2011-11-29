@@ -28,14 +28,14 @@ public enum MeasurementUnit {
 	 * @return the name
 	 */
 	public String getName() {
-		return MessageBundle.getInstance().getMessage(name);
+		return MessageBundle.getMessage(name);
 	}
 	
 	/**
 	 * @return the shortName
 	 */
 	public String getShortName() {
-		return MessageBundle.getInstance().getMessage(shortName);
+		return MessageBundle.getMessage(shortName);
 	}
 	
 }

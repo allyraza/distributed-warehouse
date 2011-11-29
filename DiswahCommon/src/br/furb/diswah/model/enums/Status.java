@@ -21,7 +21,7 @@ public enum Status {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return MessageBundle.getInstance().getMessage(description);
+		return MessageBundle.getMessage(description);
 	}
 	
 }

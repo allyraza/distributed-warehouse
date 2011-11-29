@@ -9,39 +9,21 @@ import java.util.ResourceBundle;
  */
 public class MessageBundle {
 	
-	private static MessageBundle instance = new MessageBundle();
-
+	private static ResourceBundle resource = ResourceBundle.getBundle("messages");
+	
 	/**
-	 * @return instance
+	 * @return
 	 */
-	public static MessageBundle getInstance() {
-		return instance;
-	}
-	
-	private ResourceBundle resource;
-
-	private MessageBundle() {
-		resource = ResourceBundle.getBundle("messages");
-	}
-	
-    /**
-     * Retorna o arquivo de referência que possui as mensagens que serão
-     * apresentadas pelo sistema.
-     * @return o arquivo de referência.
-     */
-	private ResourceBundle getResourceBundle() {
+	private static ResourceBundle getResourceBundle() {
 		return resource;
 	}
 
     /**
-     * Recupera mensagem cadastrada no arquivo <code>resource</code> buscando
-     * a mensagem pela chave <code>key</code> e caso a mensagem contiver parametros
-     * eles serão substituídos pelos valores de <code>arguments</code>.
-     * @param key - Chave da mensagem
-     * @param arguments - Lista de argumentos passado para mensagem.
-     * @return A mensagem do <code>resource</code>.
+     * @param key
+     * @param arguments
+     * @return
      */
-    public String getMessage(String key, Object... arguments) {
+    public static String getMessage(String key, Object... arguments) {
         try{
             if (arguments != null) {
                 return MessageFormat.format(getResourceBundle().getString(key), arguments);
@@ -49,28 +31,23 @@ public class MessageBundle {
                 return getResourceBundle().getString(key);
             }
         } catch (Exception e) {
-            return "??"+key+"??";
+            return "##"+key+"##";
         }
     }
 
     /**
-     * Recupera mensagem cadastrada no arquivo <code>resource</code> buscando
-     * a mensagem pela chave <code>key</code> e caso a mensagem contiver parametros
-     * eles serão substituídos pelos valores de <code>arguments</code>.
-     * @param key - Chave da mensagem
-     * @return A mensagem do <code>resource</code>.
+     * @param key
+     * @return
      */
-    public String getMessage(String key) {
+    public static String getMessage(String key) {
         return getMessage(key, new Object[]{});
     }
     
     /**
-     * Verifica se existe a chave no arquivo <code>resource</code> buscando
-     * a mensagem pela chave <code>key</code>
-     * @param key - Chave da mensagem
-     * @return <code>true</code> se encontrar, <code>false</code> se não encontrar.
+     * @param key
+     * @return
      */
-    public boolean containsKey(String key) {
+    public static boolean containsKey(String key) {
     	try {
     		getResourceBundle().getString(key);
     	} catch (Exception e) {

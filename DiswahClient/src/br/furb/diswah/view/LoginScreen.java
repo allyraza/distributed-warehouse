@@ -11,9 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
-import net.miginfocom.layout.AC;
-import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import br.furb.diswah.resource.MessageBundle;
 import br.furb.diswah.service.LoginService;
@@ -38,6 +37,9 @@ public class LoginScreen extends JFrame{
 	private JButton btLogin;
 	private JButton btCancel;
 
+	/**
+	 * 
+	 */
 	public LoginScreen(){
 		configFrame();
 		createComponents();
@@ -48,35 +50,37 @@ public class LoginScreen extends JFrame{
 	 */
 	private void configFrame() {
 		try {
-			//UIManager.setLookAndFeel(nlaf);
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			System.err.println("Ocorreu um erro ao carregar o look and feel.");
 		}
-		setLayout(new MigLayout(new LC().insets("10").debug(debugMillis),new AC().grow(),new AC().grow()));
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle(MessageBundle.getMessage("frame.login.title"));
+		
+		setLayout(new MigLayout("debug, insets 10","grow","grow"));
 		setMinimumSize(new Dimension(407, 295));
         setResizable(false);
-        setLocation(new Point(1800,200));
-        setTitle(MessageBundle.getInstance().getMessage("frame.login.title"));
+        setLocation(new Point(300,200));
 	}
-	private int debugMillis = 10;
+	
 	/**
 	 * 
 	 */
 	private void createComponents() {
 		pnPrincipal = new JPanel(new MigLayout("debug, insets 10","[align right][grow]","grow"));
 		
-		lbLogin = new JLabel(MessageBundle.getInstance().getMessage("frame.login.label.login"));
+		lbLogin = new JLabel(MessageBundle.getMessage("frame.login.label.login"));
 		pnPrincipal.add(lbLogin);
 		tfLogin = new JTextField();
-		pnPrincipal.add(tfLogin, "growx,wrap");
+		pnPrincipal.add(tfLogin, "wrap");
 		
-		lbPassword = new JLabel(MessageBundle.getInstance().getMessage("frame.login.label.password"));
+		lbPassword = new JLabel(MessageBundle.getMessage("frame.login.label.password"));
 		pnPrincipal.add(lbPassword);
 		pfPassword = new JPasswordField();
-		pnPrincipal.add(pfPassword, "growx,wrap");
+		pnPrincipal.add(pfPassword, "wrap");
 
-		btLogin = new JButton(MessageBundle.getInstance().getMessage("frame.login.button.login"));
+		btLogin = new JButton(MessageBundle.getMessage("frame.login.button.login"));
 		btLogin.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -92,9 +96,15 @@ public class LoginScreen extends JFrame{
 				}
 			}
 		});
-		pnPrincipal.add(btLogin,"");
+		pnPrincipal.add(btLogin);
 		
-		btCancel = new JButton(MessageBundle.getInstance().getMessage("frame.login.button.cancel"));
+		btCancel = new JButton(MessageBundle.getMessage("frame.login.button.cancel"));
+		btCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		pnPrincipal.add(btCancel);
 		
 		this.add(pnPrincipal,"grow");
