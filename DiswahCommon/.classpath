@@ -19,5 +19,8 @@
 	<classpathentry kind="lib" path="lib/hibernate-validator-annotation-processor-4.2.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator-4.2.0.Final-sources.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-validator-4.2.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/flexjson-2.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/flexjson-2.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/flexjson-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

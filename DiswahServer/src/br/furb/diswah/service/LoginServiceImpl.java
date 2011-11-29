@@ -2,7 +2,6 @@ package br.furb.diswah.service;
 
 import java.rmi.RemoteException;
 
-import br.furb.diswah.exception.BusinessException;
 import br.furb.diswah.model.User;
 
 /**
@@ -19,9 +18,9 @@ public class LoginServiceImpl extends BaseService implements LoginService {
 	}
 
 	@Override
-	public User login(String login, String password) throws BusinessException {
+	public User login(String login, String password) throws RemoteException {
 		// TODO Auto-generated method stub
-		throw new BusinessException("Not implemented yet.");
+		throw new RemoteException("Not implemented yet.");
 	}
 
 }

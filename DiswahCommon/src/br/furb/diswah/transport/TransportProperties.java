@@ -5,7 +5,7 @@ package br.furb.diswah.transport;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public final class TransportProperties {
+public class TransportProperties {
 
 	private String host;
 

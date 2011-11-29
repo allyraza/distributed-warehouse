@@ -1,14 +1,16 @@
 package br.furb.diswah.service;
 
-import br.furb.diswah.exception.BusinessException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import br.furb.diswah.model.User;
 
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public interface LoginService {
+public interface LoginService extends Remote{
 
-	User login(String login, String password) throws BusinessException;
+	User login(String login, String password) throws RemoteException;
 	
 }
