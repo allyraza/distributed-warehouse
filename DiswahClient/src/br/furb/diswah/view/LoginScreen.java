@@ -2,6 +2,7 @@ package br.furb.diswah.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
+import br.furb.diswah.UserSession;
+import br.furb.diswah.model.User;
 import br.furb.diswah.resource.MessageBundle;
 import br.furb.diswah.service.LoginService;
 import br.furb.diswah.transport.TransportFactory;
@@ -123,7 +126,17 @@ public class LoginScreen extends JFrame{
 				try {
 					LoginService service = TransportFactory.createCommunication(prop, TransportMethod.RMI)
 														   .requestInterface(LoginService.class, new Object[]{});
-					service.login(tfLogin.getText(), pfPassword.getText());
+					User user = service.login(tfLogin.getText(), pfPassword.getText());
+					
+					UserSession.getInstance().initSession(user);
+					
+					EventQueue.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							new SystemFrame().setVisible(true);
+						}
+					});
+					setVisible(false);
 				} catch (Throwable e) {
 					JOptionPane.showMessageDialog(LoginScreen.this, 
 												  e.getCause().getMessage(),
