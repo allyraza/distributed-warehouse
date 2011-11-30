@@ -18,6 +18,7 @@ import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
 import br.furb.diswah.UserSession;
+import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.model.User;
 import br.furb.diswah.resource.MessageBundle;
 import br.furb.diswah.service.LoginService;
@@ -122,7 +123,7 @@ public class LoginScreen extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TransportProperties prop = new TransportProperties();
-				prop.setHost("localhost");
+				prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
 				try {
 					LoginService service = TransportFactory.createCommunication(prop, TransportMethod.RMI)
 														   .requestInterface(LoginService.class, new Object[]{});
