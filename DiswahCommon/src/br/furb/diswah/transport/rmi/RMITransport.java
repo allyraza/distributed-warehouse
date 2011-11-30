@@ -1,9 +1,11 @@
-package br.furb.diswah.transport;
+package br.furb.diswah.transport.rmi;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import br.furb.diswah.exception.CommunicationException;
+import br.furb.diswah.transport.BasicTransport;
+import br.furb.diswah.transport.TransportProperties;
 
 /**
  * 

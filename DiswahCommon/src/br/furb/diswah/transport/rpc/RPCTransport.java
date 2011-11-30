@@ -1,14 +1,16 @@
-package br.furb.diswah.transport;
+package br.furb.diswah.transport.rpc;
 
 import br.furb.diswah.exception.CommunicationException;
+import br.furb.diswah.transport.BasicTransport;
+import br.furb.diswah.transport.TransportProperties;
 
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class CorbaTransport extends BasicTransport {
+public class RPCTransport extends BasicTransport {
 
-	protected CorbaTransport(TransportProperties properties){
+	protected RPCTransport(TransportProperties properties){
 		super(properties);
 	}
 	

@@ -1,5 +1,9 @@
 package br.furb.diswah.transport;
 
+import br.furb.diswah.transport.corba.CorbaTransport;
+import br.furb.diswah.transport.rmi.RMITransport;
+import br.furb.diswah.transport.rpc.RPCTransport;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
