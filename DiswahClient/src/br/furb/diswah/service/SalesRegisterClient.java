@@ -1,5 +1,9 @@
 package br.furb.diswah.service;
 
+import java.util.List;
+
+import br.furb.diswah.model.Sale;
+import br.furb.diswah.util.Utils;
 import netbula.ORPC.ClientGeneric;
 import netbula.ORPC.XDTLong;
 import netbula.ORPC.XDTString;
@@ -51,35 +55,36 @@ public class SalesRegisterClient extends ClientGeneric implements SalesRegister{
 		super(host, prog, ver, proto);
 	}
 
-	public String registerSale(String in_arg) throws rpc_err {
+	public Sale registerSale(Sale sale) throws rpc_err {
 		XDTString _in_arg = new XDTString();
-		_in_arg.value = in_arg;
+		_in_arg.value = Utils.serializeObject(sale);
 		XDTString _out_arg = new XDTString();
 		getClient().call(SalesRegister._registerSale_proc, _in_arg, _out_arg);
-		return _out_arg.value;
+		return Utils.deserializeObject(Sale.class, _out_arg.value);
 	}
 
-	public String findSale(Long in_arg) throws rpc_err {
+	public Sale findSale(Long id) throws rpc_err {
 		XDTLong _in_arg = new XDTLong();
-		_in_arg.value = in_arg;
+		_in_arg.value = id;
 		XDTString _out_arg = new XDTString();
 		getClient().call(SalesRegister._findSale_proc, _in_arg, _out_arg);
-		return _out_arg.value;
+		return Utils.deserializeObject(Sale.class, _out_arg.value);
 	}
 
-	public String list() throws rpc_err {
+	@SuppressWarnings("unchecked")
+	public List<Sale> list() throws rpc_err {
 		XDTvoid _in_arg = new XDTvoid();
 		XDTString _out_arg = new XDTString();
 		getClient().call(SalesRegister._list_proc, _in_arg, _out_arg);
-		return _out_arg.value;
+		return Utils.deserializeObject(List.class, _out_arg.value);
 	}
 
-	public String delete(Long in_arg) throws rpc_err {
+	public Sale delete(Long id) throws rpc_err {
 		XDTLong _in_arg = new XDTLong();
-		_in_arg.value = in_arg;
+		_in_arg.value = id;
 		XDTString _out_arg = new XDTString();
 		getClient().call(SalesRegister._delete_proc, _in_arg, _out_arg);
-		return _out_arg.value;
+		return Utils.deserializeObject(Sale.class, _out_arg.value);
 	}
 
 }

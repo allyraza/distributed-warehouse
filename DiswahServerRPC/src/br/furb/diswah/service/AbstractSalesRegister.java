@@ -1,5 +1,9 @@
 package br.furb.diswah.service;
 
+import java.util.List;
+
+import br.furb.diswah.model.Sale;
+import br.furb.diswah.util.Utils;
 import netbula.ORPC.Svc;
 import netbula.ORPC.XDR;
 import netbula.ORPC.XDRError;
@@ -18,13 +22,13 @@ public abstract class AbstractSalesRegister extends Svc implements SalesRegister
 		super(SalesRegister._def_pno, SalesRegister._def_vno);
 	}
 
-	abstract public String registerSale(String in_arg);
+	abstract public Sale registerSale(Sale sale);
 
-	abstract public String findSale(Long in_arg);
+	abstract public Sale findSale(Long id);
 
-	abstract public String list();
+	abstract public List<Sale> list();
 
-	abstract public String delete(Long in_arg);
+	abstract public Sale delete(Long id);
 
 	public XDT proc_call(int proc, XDR inXDR) throws XDRError {
 		switch (proc) {
@@ -36,7 +40,7 @@ public abstract class AbstractSalesRegister extends Svc implements SalesRegister
 			try {
 				XDTString _in_arg = new XDTString();
 				_in_arg.xdr(inXDR);
-				_out_arg1 = this.registerSale(_in_arg.value);
+				_out_arg1 = Utils.serializeObject(this.registerSale(Utils.deserializeObject(Sale.class, _in_arg.value)));
 			} catch (XDRError e) {
 				throw e;
 			}
@@ -47,7 +51,7 @@ public abstract class AbstractSalesRegister extends Svc implements SalesRegister
 			try {
 				XDTLong _in_arg = new XDTLong();
 				_in_arg.xdr(inXDR);
-				_out_arg2 = this.findSale(_in_arg.val());
+				_out_arg2 = Utils.serializeObject(this.findSale(_in_arg.value));
 			} catch (XDRError e) {
 				throw e;
 			}
@@ -55,7 +59,7 @@ public abstract class AbstractSalesRegister extends Svc implements SalesRegister
 
 		case 3:
 			String _out_arg3;
-			_out_arg3 = this.list();
+			_out_arg3 = Utils.serializeObject(this.list());
 			return new XDTString(_out_arg3);
 
 		case 4:
@@ -63,7 +67,7 @@ public abstract class AbstractSalesRegister extends Svc implements SalesRegister
 			try {
 				XDTLong _in_arg = new XDTLong();
 				_in_arg.xdr(inXDR);
-				_out_arg4 = this.delete(_in_arg.val());
+				_out_arg4 = Utils.serializeObject(this.delete(_in_arg.value));
 			} catch (XDRError e) {
 				throw e;
 			}

@@ -1,5 +1,7 @@
 package br.furb.diswah.connection;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.Properties;
 
 
@@ -15,7 +17,7 @@ public class PropertiesBundle {
 		if(properties == null){
 			properties = new Properties();
 			try {
-				properties.load(ClassLoader.getSystemResourceAsStream("diswah.properties"));
+				properties.load(new FileReader(new File("diswah.properties")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -23,6 +23,9 @@
 	<classpathentry kind="lib" path="/DiswahCommon/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/DiswahCommon/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="lib/miglayout-3.7.3.1-swing.jar"/>
-	<classpathentry kind="lib" path="lib/napkinlaf-alpha001.jar"/>
+	<classpathentry kind="lib" path="/DiswahCommon/lib/flexjson-2.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/DiswahCommon/lib/flexjson-2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/DiswahCommon/lib/flexjson-2.1.jar"/>
+	<classpathentry kind="lib" path="/DiswahCommon/lib/orpc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,5 +1,7 @@
 package br.furb.diswah.service;
 
+import java.util.List;
+
 import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.exception.CommunicationException;
 import br.furb.diswah.model.Sale;
@@ -8,7 +10,6 @@ import br.furb.diswah.transport.BasicTransport;
 import br.furb.diswah.transport.TransportFactory;
 import br.furb.diswah.transport.TransportMethod;
 import br.furb.diswah.transport.TransportProperties;
-import br.furb.diswah.util.Utils;
 
 /**
  * 
@@ -19,13 +20,9 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 	private SaleStorage saleStorage;
 	
 	@Override
-	public String registerSale(String saleStr) {
+	public Sale registerSale(Sale sale) {
 		try {
-			Sale sale = Utils.deserializeObject(Sale.class, saleStr);
-			
-			getSaleStorage().save(sale);
-
-			return Utils.serializeObject(sale);
+			return getSaleStorage().save(sale);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -33,9 +30,9 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 	}
 
 	@Override
-	public String findSale(Long id) {
+	public Sale findSale(Long id) {
 		try {
-			return Utils.serializeObject(getSaleStorage().find(id));
+			return getSaleStorage().find(id);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -43,9 +40,9 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 	}
 
 	@Override
-	public String list() {
+	public List<Sale> list() {
 		try {
-			return Utils.serializeObject(getSaleStorage().list());
+			return getSaleStorage().list();
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -53,9 +50,9 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 	}
 
 	@Override
-	public String delete(Long id) {
+	public Sale delete(Long id) {
 		try {
-			return Utils.serializeObject(getSaleStorage().delete(getSaleStorage().find(id)));
+			return getSaleStorage().delete(getSaleStorage().find(id));
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
