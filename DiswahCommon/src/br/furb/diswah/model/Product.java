@@ -1,5 +1,7 @@
 package br.furb.diswah.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +47,10 @@ public class Product extends BasicEntity{
 	@Column(name = "ds_description", nullable = false, length = 200)
     private String description;
 	
+	@NotNull
+	@Column(name = "vl_unitary_price", precision = 18, scale = 2, nullable = false)
+	private BigDecimal unitaryPrice;
+	
 	@Enumerated
     @Column(name="tp_measurement_unit")
 	private MeasurementUnit measurementUnit;
@@ -85,6 +91,14 @@ public class Product extends BasicEntity{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public BigDecimal getUnitaryPrice() {
+		return unitaryPrice;
+	}
+
+	public void setUnitaryPrice(BigDecimal unitaryPrice) {
+		this.unitaryPrice = unitaryPrice;
 	}
 
 	public MeasurementUnit getMeasurementUnit() {

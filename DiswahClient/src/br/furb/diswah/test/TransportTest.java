@@ -2,6 +2,7 @@ package br.furb.diswah.test;
 
 import java.rmi.RemoteException;
 
+import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.exception.CommunicationException;
 import br.furb.diswah.model.User;
 import br.furb.diswah.storage.UserStorage;
@@ -19,7 +20,7 @@ public class TransportTest {
 	public static void main(String[] args) throws CommunicationException, RemoteException {
 		
 		TransportProperties tp = new TransportProperties();
-		tp.setHost("localhost");
+		tp.setHost(PropertiesBundle.getProperty("server.persistence.host"));
 		
 		BasicTransport basTransport = TransportFactory.createCommunication(tp, TransportMethod.RMI);
 		
