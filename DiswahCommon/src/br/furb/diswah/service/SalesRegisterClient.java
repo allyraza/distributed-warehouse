@@ -1,11 +1,10 @@
-package br.furb.diswah.transport.rpc;
+package br.furb.diswah.service;
 
 import netbula.ORPC.ClientGeneric;
 import netbula.ORPC.XDTLong;
 import netbula.ORPC.XDTString;
 import netbula.ORPC.XDTvoid;
 import netbula.ORPC.rpc_err;
-import br.furb.diswah.service.SalesRegister;
 
 public class SalesRegisterClient extends ClientGeneric implements SalesRegister{
 
