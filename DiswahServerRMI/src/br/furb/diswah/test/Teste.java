@@ -1,5 +1,7 @@
 package br.furb.diswah.test;
 
+import java.math.BigDecimal;
+
 import br.furb.diswah.model.Classification;
 import br.furb.diswah.model.Product;
 import br.furb.diswah.model.User;
@@ -37,6 +39,7 @@ public class Teste {
 		prod.setClassification(classification);
 		prod.setCode(1l);
 		prod.setDescription("Uma caixa de algo");
+		prod.setUnitaryPrice(new BigDecimal("150,25"));
 		prod.setName("Leite");
 		System.out.println(new ProductStorageImpl().save(prod).getId());
 		

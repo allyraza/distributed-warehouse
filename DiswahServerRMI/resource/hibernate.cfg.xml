@@ -39,6 +39,8 @@
         <mapping class="br.furb.diswah.model.User"/>
         <mapping class="br.furb.diswah.model.Classification"/>
         <mapping class="br.furb.diswah.model.Product"/>
+        <mapping class="br.furb.diswah.model.Sale"/>
+        <mapping class="br.furb.diswah.model.SaleProduct"/>
          
 
     </session-factory>
