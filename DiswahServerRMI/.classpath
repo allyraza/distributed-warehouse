@@ -23,5 +23,7 @@
 	<classpathentry kind="lib" path="/DiswahCommon/lib/orpc.jar"/>
 	<classpathentry kind="lib" path="/DiswahCommon/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/DiswahCommon/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.14-bin.jar"/>
+	<classpathentry kind="src" path="resource"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

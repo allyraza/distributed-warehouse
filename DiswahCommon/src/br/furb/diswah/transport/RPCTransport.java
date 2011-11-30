@@ -1,5 +1,6 @@
 package br.furb.diswah.transport;
 
+import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.exception.CommunicationException;
 
 /**
@@ -14,8 +15,12 @@ public class RPCTransport extends BasicTransport {
 	
 	@Override
 	public <T> T requestInterface(Class<T> target, Object[] params) throws CommunicationException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return target.getConstructor(String.class, String.class).newInstance(getProperties().getHost(),
+																				 PropertiesBundle.getProperty("server.sales.protocol"));
+		} catch (Exception e) {
+			throw new CommunicationException(String.format("Ocorreu um erro ao instanciar a classe '%s'"));
+		}
 	}
 
 }

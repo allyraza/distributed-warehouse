@@ -64,7 +64,7 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 			TransportProperties prop = new TransportProperties();
 			prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
 			
-			BasicTransport transport = TransportFactory.createCommunication(prop, TransportMethod.CORBA);
+			BasicTransport transport = TransportFactory.createCommunication(prop, TransportMethod.RMI);
 		
 			saleStorage = transport.requestInterface(SaleStorage.class, new Object[]{});
 		}

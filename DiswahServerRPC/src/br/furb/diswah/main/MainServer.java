@@ -1,6 +1,5 @@
 package br.furb.diswah.main;
 
-import netbula.ORPC.Pmapsvc;
 import netbula.ORPC.rpc_err;
 import br.furb.diswah.service.SalesRegisterImpl;
 
@@ -17,16 +16,10 @@ public class MainServer {
 		run();
 	}
 
-	/**
-	 * 
-	 */
 	private static void instanciate() {
 		SALES_REGISTER = new SalesRegisterImpl();
 	}
 
-	/**
-	 * 
-	 */
 	private static void run() {
 		new Thread() {
 			@Override
