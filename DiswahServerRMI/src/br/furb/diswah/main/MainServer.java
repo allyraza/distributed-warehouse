@@ -13,7 +13,9 @@ import br.furb.diswah.storage.ClientStorage;
 import br.furb.diswah.storage.ClientStorageImpl;
 import br.furb.diswah.storage.ProductStorage;
 import br.furb.diswah.storage.ProductStorageImpl;
+import br.furb.diswah.storage.SaleProductStorage;
 import br.furb.diswah.storage.SaleProductStorageImpl;
+import br.furb.diswah.storage.SaleStorage;
 import br.furb.diswah.storage.SaleStorageImpl;
 import br.furb.diswah.storage.UserStorage;
 import br.furb.diswah.storage.UserStorageImpl;
@@ -74,8 +76,8 @@ public class MainServer {
 			bindObject(ClassificationStorage.class, UnicastRemoteObject.exportObject(CLASSIFICATION_STORAGE_IMPL, 0));
 			bindObject(ProductStorage.class, UnicastRemoteObject.exportObject(PRODUCT_STORAGE_IMPL, 0));
 			bindObject(ClientStorage.class, UnicastRemoteObject.exportObject(CLIENT_STORAGE_IMPL, 0));
-			bindObject(SaleStorageImpl.class, UnicastRemoteObject.exportObject(SALE_STORAGE_IMPL, 0));
-			bindObject(SaleProductStorageImpl.class, UnicastRemoteObject.exportObject(SALE_PRODUCT_STORAGE_IMPL, 0));
+			bindObject(SaleStorage.class, UnicastRemoteObject.exportObject(SALE_STORAGE_IMPL, 0));
+			bindObject(SaleProductStorage.class, UnicastRemoteObject.exportObject(SALE_PRODUCT_STORAGE_IMPL, 0));
 			
 		} catch (RemoteException e) {
 			System.out.println("Exception: Erro ao carregar storages.\n" + e.getMessage());

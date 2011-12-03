@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 
 import br.furb.diswah.model.Classification;
 import br.furb.diswah.model.Product;
+import br.furb.diswah.model.Sale;
 import br.furb.diswah.model.User;
 import br.furb.diswah.model.enums.MeasurementUnit;
 import br.furb.diswah.storage.ClassificationStorageImpl;
 import br.furb.diswah.storage.ProductStorageImpl;
+import br.furb.diswah.storage.SaleStorageImpl;
 import br.furb.diswah.storage.UserStorageImpl;
 
 /**
@@ -39,10 +41,12 @@ public class Teste {
 		prod.setClassification(classification);
 		prod.setCode(1l);
 		prod.setDescription("Uma caixa de algo");
-		prod.setUnitaryPrice(new BigDecimal("150,25"));
+		prod.setUnitaryPrice(new BigDecimal("150.25"));
 		prod.setName("Leite");
 		System.out.println(new ProductStorageImpl().save(prod).getId());
 		
+		SaleStorageImpl ssi = new SaleStorageImpl();
+		ssi.save(new Sale());
 		
 		System.exit(0);
 	}
