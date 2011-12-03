@@ -1,103 +1,46 @@
 package br.furb.diswah.main;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.server.UnicastRemoteObject;
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
 
-import br.furb.diswah.service.LoginService;
-import br.furb.diswah.service.LoginServiceImpl;
-import br.furb.diswah.storage.ClassificationStorage;
-import br.furb.diswah.storage.ClassificationStorageImpl;
-import br.furb.diswah.storage.ClientStorage;
-import br.furb.diswah.storage.ClientStorageImpl;
-import br.furb.diswah.storage.ProductStorage;
-import br.furb.diswah.storage.ProductStorageImpl;
-import br.furb.diswah.storage.UserStorage;
-import br.furb.diswah.storage.UserStorageImpl;
+import br.furb.diswah.storage.EntityStorageImpl;
+import br.furb.diswah.storage.corba.EntityStorage;
+import br.furb.diswah.storage.corba.EntityStorageHelper;
 
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public class MainServer {
+
+	private static EntityStorageImpl ENTITY_STORAGE;
 	
-	// Storages
-	private static UserStorageImpl USER_STORAGE_IMPL;
-	private static ClassificationStorageImpl CLASSIFICATION_STORAGE_IMPL;
-	private static ProductStorageImpl PRODUCT_STORAGE_IMPL;
-	private static ClientStorageImpl CLIENT_STORAGE_IMPL;
-	// Services
-	private static LoginServiceImpl LOGIN_SERVICE_IMPL;
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			System.out.println("Server on.");
-			
-			System.setSecurityManager(null);
+	public static void main(String[] args) throws Throwable {
+		ORB orb = ORB.init(new String[]{"–ORBInitialPort", "2000"}, null);
 
-			createAndBindStorages();
-			createAndBindServices();
-			
-			System.out.println("Bindings up.");
-		} catch (Exception ex) {
-			System.out.println("Exception: " + ex.getMessage());
-		}
-	}
+		ENTITY_STORAGE = new EntityStorageImpl();
 
-	/**
-	 * 
-	 */
-	private static void createAndBindStorages() {
-		try {
-			USER_STORAGE_IMPL = new UserStorageImpl();
-			CLASSIFICATION_STORAGE_IMPL = new ClassificationStorageImpl();
-			PRODUCT_STORAGE_IMPL = new ProductStorageImpl();
-			CLIENT_STORAGE_IMPL = new ClientStorageImpl();
-			
-			UnicastRemoteObject.unexportObject(USER_STORAGE_IMPL, true);
-			UnicastRemoteObject.unexportObject(CLASSIFICATION_STORAGE_IMPL, true);
-			UnicastRemoteObject.unexportObject(PRODUCT_STORAGE_IMPL, true);
-			UnicastRemoteObject.unexportObject(CLIENT_STORAGE_IMPL, true);
-			
-			bindObject(UserStorage.class, UnicastRemoteObject.exportObject(USER_STORAGE_IMPL, 0));
-			bindObject(ClassificationStorage.class, UnicastRemoteObject.exportObject(CLASSIFICATION_STORAGE_IMPL, 0));
-			bindObject(ProductStorage.class, UnicastRemoteObject.exportObject(PRODUCT_STORAGE_IMPL, 0));
-			bindObject(ClientStorage.class, UnicastRemoteObject.exportObject(CLIENT_STORAGE_IMPL, 0));
-			
-		} catch (RemoteException e) {
-			System.out.println("Exception: Erro ao carregar storages.\n" + e.getMessage());
-		}
-	}
+		// Ativa o POA
+		POA rootpoa = POAHelper.narrow(orb .resolve_initial_references("RootPOA"));
+		rootpoa.the_POAManager().activate();
 
-	/**
-	 * 
-	 */
-	private static void createAndBindServices() {
-		try {
-			LOGIN_SERVICE_IMPL = new LoginServiceImpl();
-			
-			UnicastRemoteObject.unexportObject(LOGIN_SERVICE_IMPL, true);
-			
-			bindObject(LoginService.class, UnicastRemoteObject.exportObject(LOGIN_SERVICE_IMPL, 0));
-			
-		} catch (RemoteException e) {
-			System.out.println("Exception: Erro ao carregar services.\n" + e.getMessage());
-		}
+		// Pega a referência do servidor
+		org.omg.CORBA.Object ref = rootpoa.servant_to_reference(ENTITY_STORAGE);
+		EntityStorage href = EntityStorageHelper.getInstance().narrow(ref);
+
+		// Obtém uma referência para o servidor de nomes
+		org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+		NamingContextExt namecontextRef = NamingContextExtHelper.narrow(objRef);
+
+		// Registra o servidor no servico de nomes
+		NameComponent path[] = namecontextRef.to_name(EntityStorage.class.getSimpleName());
+		namecontextRef.rebind(path, href);
+
+		System.out.println("Servidor aguardando requisicoes ....");
 	}
 	
-	/**
-	 * @param clazz
-	 * @param remoteObject
-	 */
-	private static void bindObject(Class<?> clazz, Remote remoteObject) {
-		try {
-			LocateRegistry.getRegistry().rebind(clazz.getSimpleName(),  remoteObject);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }
