@@ -1,6 +1,8 @@
 package br.furb.diswah.view;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -69,6 +71,16 @@ public class SystemFrame extends JFrame {
 			registerMenu.add(userMenuItem);
 			
 			JMenuItem clientMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.client"));
+			//Evento do menu Cliente
+			clientMenuItem.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					AbstractInternalPanel telaCliente = new ClientsView();
+					SystemFrame.this.setContentPane(telaCliente);
+					
+				}
+			});
 			registerMenu.add(clientMenuItem);
 			
 		menuBar.add(registerMenu);
@@ -83,6 +95,10 @@ public class SystemFrame extends JFrame {
 		menuBar.add(logoutMenu);
 		
 		setJMenuBar(menuBar);
+	}
+	
+	public static void main(String[] args) {
+		new SystemFrame().setVisible(true);
 	}
 
 }
