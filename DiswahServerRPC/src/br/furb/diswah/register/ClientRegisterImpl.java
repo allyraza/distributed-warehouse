@@ -7,7 +7,6 @@ import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.exception.CommunicationException;
 import br.furb.diswah.model.Client;
 import br.furb.diswah.storage.ClientStorage;
-import br.furb.diswah.storage.UserStorage;
 import br.furb.diswah.transport.TransportFactory;
 import br.furb.diswah.transport.TransportMethod;
 import br.furb.diswah.transport.TransportProperties;
