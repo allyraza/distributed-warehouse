@@ -1,10 +1,12 @@
 package br.furb.diswah.view;
 
+import br.furb.diswah.model.Classification;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class ClassificationView extends AbstractInternalPanel {
+public class ClassificationView extends AbstractInternalPanel<Classification> {
 
 	/**
 	 * 
@@ -21,6 +23,11 @@ public class ClassificationView extends AbstractInternalPanel {
 	@Override
 	protected String getMessagesProperty() {
 		return "classification";
+	}
+
+	@Override
+	protected Class<Classification> getEntityClass() {
+		return Classification.class;
 	}
 	
 }

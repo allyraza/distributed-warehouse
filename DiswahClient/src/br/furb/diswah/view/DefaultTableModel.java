@@ -23,8 +23,10 @@ public class DefaultTableModel extends AbstractTableModel {
 	}
 	
 	public void refresh(List<? extends BasicEntity> data) {
-		this.data = data;
-		fireTableDataChanged();
+		if(data != null){
+			this.data = data;
+			fireTableDataChanged();
+		}
 	}
 
 	@Override

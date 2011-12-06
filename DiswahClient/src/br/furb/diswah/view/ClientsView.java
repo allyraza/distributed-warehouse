@@ -3,8 +3,9 @@ package br.furb.diswah.view;
 import javax.swing.JTextField;
 
 import br.furb.diswah.connection.PropertiesBundle;
-import br.furb.diswah.exception.CommunicationException;
+import br.furb.diswah.model.Client;
 import br.furb.diswah.register.ClientRegister;
+import br.furb.diswah.register.ClientRegisterClient;
 import br.furb.diswah.transport.BasicTransport;
 import br.furb.diswah.transport.TransportFactory;
 import br.furb.diswah.transport.TransportMethod;
@@ -14,7 +15,7 @@ import br.furb.diswah.transport.TransportProperties;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class ClientsView extends AbstractInternalPanel{
+public class ClientsView extends AbstractInternalPanel<Client>{
 	
 	private JTextField id;
 	private JTextField name;
@@ -25,6 +26,7 @@ public class ClientsView extends AbstractInternalPanel{
 	 */
 	public ClientsView() {
 		super();
+		showData();
 	}
 
 	@Override
@@ -39,8 +41,6 @@ public class ClientsView extends AbstractInternalPanel{
 		
 		address = new JTextField();
 		addComponent(address, "growx, wrap", "address");
-		
-		showData();
 	}
 
 	/**
@@ -49,9 +49,9 @@ public class ClientsView extends AbstractInternalPanel{
 	private void showData() {
 		TransportProperties properties = new TransportProperties();
 		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
-		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.RPC);
 		try {
-			ClientRegister cr = bt.requestInterface(ClientRegister.class, new Object[]{});
+			ClientRegisterClient cr = bt.requestInterface(ClientRegisterClient.class, new Object[]{});
 			refreshData(cr.list());
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -61,6 +61,11 @@ public class ClientsView extends AbstractInternalPanel{
 	@Override
 	protected String getMessagesProperty() {
 		return "client";
+	}
+
+	@Override
+	protected Class<Client> getEntityClass() {
+		return Client.class;
 	}
 
 }

@@ -1,10 +1,12 @@
 package br.furb.diswah.view;
 
+import br.furb.diswah.model.User;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class UsersView extends AbstractInternalPanel  {
+public class UsersView extends AbstractInternalPanel<User>  {
 
 	/**
 	 * 
@@ -22,6 +24,14 @@ public class UsersView extends AbstractInternalPanel  {
 	@Override
 	protected String getMessagesProperty() {
 		return "user";
+	}
+
+	/* (non-Javadoc)
+	 * @see br.furb.diswah.view.AbstractInternalPanel#getEntityClass()
+	 */
+	@Override
+	protected Class<User> getEntityClass() {
+		return User.class;
 	}
 
 }

@@ -16,7 +16,7 @@ import br.furb.diswah.model.BasicEntity;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public abstract class AbstractInternalPanel extends JPanel{
+public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPanel{
 
 	private JPanel internalPanel;
 	private JTable tbData;
@@ -25,6 +25,7 @@ public abstract class AbstractInternalPanel extends JPanel{
 	public AbstractInternalPanel(){
 		configPanel();
 		createComponents();
+		createTable();
 		setVisible(true);
 	}
 	
@@ -32,7 +33,7 @@ public abstract class AbstractInternalPanel extends JPanel{
 	
 	protected abstract String getMessagesProperty();
 
-	protected abstract <T extends BasicEntity> Class<T> getEntityClass();
+	protected abstract Class<T> getEntityClass();
 	
 	/**
 	 * 
@@ -51,10 +52,12 @@ public abstract class AbstractInternalPanel extends JPanel{
 	
 	protected void createTable(){
 		tbData = new JTable(new DefaultTableModel(getEntityClass()));
+		tableModel = new DefaultTableModel(getEntityClass());
+		tbData.setModel(tableModel);
 		internalPanel.add(tbData,"span, align center, growy, growx");
 	}
 	
-	protected void refreshData(List<? extends BasicEntity> data){
+	protected void refreshData(List<T> data){
 		tableModel.refresh(data);
 	}
 	
