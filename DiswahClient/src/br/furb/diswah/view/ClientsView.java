@@ -1,8 +1,14 @@
 package br.furb.diswah.view;
 
-import java.awt.Dimension;
+import javax.swing.JTextField;
 
-
+import br.furb.diswah.connection.PropertiesBundle;
+import br.furb.diswah.exception.CommunicationException;
+import br.furb.diswah.register.ClientRegister;
+import br.furb.diswah.transport.BasicTransport;
+import br.furb.diswah.transport.TransportFactory;
+import br.furb.diswah.transport.TransportMethod;
+import br.furb.diswah.transport.TransportProperties;
 
 /**
  * 
@@ -10,6 +16,9 @@ import java.awt.Dimension;
  */
 public class ClientsView extends AbstractInternalPanel{
 	
+	private JTextField id;
+	private JTextField name;
+	private JTextField address;
 	
 	/**
 	 * 
@@ -18,31 +27,40 @@ public class ClientsView extends AbstractInternalPanel{
 		super();
 	}
 
-	/* (non-Javadoc)
-	 * @see br.furb.diswah.view.AbstractInternalFrame#createComponents()
-	 */
 	@Override
 	protected void createComponents() {
-		// TODO Auto-generated method stub
+		id = new JTextField();
+		id.setEditable(false);
+		id.setFocusable(false);
+		addComponent(id, "growx, wrap", "id");
 		
+		name = new JTextField();
+		addComponent(name, "growx, wrap", "name");
+		
+		address = new JTextField();
+		addComponent(address, "growx, wrap", "address");
+		
+		showData();
 	}
 
-	/* (non-Javadoc)
-	 * @see br.furb.diswah.view.AbstractInternalFrame#getMessagesProperty()
+	/**
+	 * 
 	 */
+	private void showData() {
+		TransportProperties properties = new TransportProperties();
+		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
+		try {
+			ClientRegister cr = bt.requestInterface(ClientRegister.class, new Object[]{});
+			refreshData(cr.list());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	protected String getMessagesProperty() {
 		return "client";
 	}
 
-	/* (non-Javadoc)
-	 * @see br.furb.diswah.view.AbstractInternalFrame#getSize()
-	 */
-	@Override
-	public Dimension getSize() {
-		return new Dimension(500, 500);
-	}
-
-	
-	
 }

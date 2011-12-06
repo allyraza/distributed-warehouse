@@ -4,23 +4,24 @@ package br.furb.diswah.view;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class ClassificationView extends AbstractInternalPanel {
+public class SalesProductsView extends AbstractInternalPanel {
 
 	/**
 	 * 
 	 */
-	public ClassificationView() {
+	public SalesProductsView() {
 		super();
 	}
 	
 	@Override
 	protected void createComponents() {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	protected String getMessagesProperty() {
-		return "classification";
+		return "saleproduct";
 	}
-	
+
 }

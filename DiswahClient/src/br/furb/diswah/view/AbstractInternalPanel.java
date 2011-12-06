@@ -1,17 +1,16 @@
 package br.furb.diswah.view;
 
-import java.awt.Color;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
+import javax.swing.JTable;
 import javax.swing.plaf.BorderUIResource.BevelBorderUIResource;
 
-import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
-
 import net.miginfocom.swing.MigLayout;
+import br.furb.diswah.model.BasicEntity;
 
 /**
  * 
@@ -20,6 +19,8 @@ import net.miginfocom.swing.MigLayout;
 public abstract class AbstractInternalPanel extends JPanel{
 
 	private JPanel internalPanel;
+	private JTable tbData;
+	private DefaultTableModel tableModel;
 	
 	public AbstractInternalPanel(){
 		configPanel();
@@ -30,6 +31,8 @@ public abstract class AbstractInternalPanel extends JPanel{
 	protected abstract void createComponents();
 	
 	protected abstract String getMessagesProperty();
+
+	protected abstract <T extends BasicEntity> Class<T> getEntityClass();
 	
 	/**
 	 * 
@@ -41,9 +44,18 @@ public abstract class AbstractInternalPanel extends JPanel{
 		add(internalPanel,"grow");
 	}
 	
-	public void addComponent(JComponent component, String constraints, String label){
-		internalPanel.add(new JLabel(label),"");
+	protected void addComponent(JComponent component, String constraints, String label){
+		internalPanel.add(new JLabel("panel.label."+getMessagesProperty()+"."+label),"align right, shrink");
 		internalPanel.add(component,constraints);
+	}
+	
+	protected void createTable(){
+		tbData = new JTable(new DefaultTableModel(getEntityClass()));
+		internalPanel.add(tbData,"span, align center, growy, growx");
+	}
+	
+	protected void refreshData(List<? extends BasicEntity> data){
+		tableModel.refresh(data);
 	}
 	
 }

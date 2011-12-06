@@ -1,6 +1,7 @@
 package br.furb.diswah.view;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
+import br.furb.diswah.UserSession;
 import br.furb.diswah.resource.MessageBundle;
 
 /**
@@ -62,6 +64,8 @@ public class SystemFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu registerMenu = new JMenu(MessageBundle.getMessage("frame.menubar.register"));
+			
+			// Classificação
 			JMenuItem classificationMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.classification"));
 			classificationMenuItem.addActionListener(new ActionListener() {
 				@Override
@@ -71,13 +75,34 @@ public class SystemFrame extends JFrame {
 			});
 			registerMenu.add(classificationMenuItem);
 			
+			// Produto
 			JMenuItem productMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.product"));
+			productMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new ProductsView());
+				}
+			});
 			registerMenu.add(productMenuItem);
 			
+			// Usuário
 			JMenuItem userMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.user"));
+			userMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new UsersView());
+				}
+			});
 			registerMenu.add(userMenuItem);
 			
+			// Cliente
 			JMenuItem clientMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.client"));
+			clientMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new ClientsView());
+				}
+			});
 			registerMenu.add(clientMenuItem);
 			
 		menuBar.add(registerMenu);
@@ -85,13 +110,41 @@ public class SystemFrame extends JFrame {
 		JMenu saleMenu = new JMenu(MessageBundle.getMessage("frame.menubar.sale"));
 		menuBar.add(saleMenu);
 		
-			JMenuItem saleMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menubar.sale"));
+			// Venda
+			JMenuItem saleMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.sale"));
+			saleMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new SalesView());
+				}
+			});
 			saleMenu.add(saleMenuItem);
 		
-			JMenuItem saleProductMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menubar.saleproduct"));
+			// Itens de Venda
+			JMenuItem saleProductMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.saleproduct"));
+			saleProductMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new SalesProductsView());
+				}
+			});
 			saleMenu.add(saleProductMenuItem);
 			
-		JMenu logoutMenu = new JMenu(MessageBundle.getMessage("frame.menubar.logout"));
+		JMenuItem logoutMenu = new JMenuItem(MessageBundle.getMessage("frame.menubar.logout"));
+		logoutMenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UserSession.getInstance().destroySession();
+				
+				EventQueue.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						new LoginScreen().setVisible(true);
+					}
+				});
+				SystemFrame.this.dispose();
+			}
+		});
 		menuBar.add(logoutMenu);
 		
 		setJMenuBar(menuBar);
