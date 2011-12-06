@@ -37,19 +37,6 @@ public class Product extends BasicEntity{
 	@Column(name = "ds_description", nullable = false, length = 200)
     private String description;
 	
-	/*@NotNull
-	@Column(name = "vl_unitary_price", precision = 18, scale = 2, nullable = false)
-	private BigDecimal unitaryPrice;*/
-	
-	/*@Enumerated
-    @Column(name="tp_measurement_unit")
-	private MeasurementUnit measurementUnit;*/
-	
-	/*@NotNull
-    @ForeignKey(name="fk_product_classification")
-    @ManyToOne(targetEntity= Classification.class, cascade= CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name="classification_id_classification", nullable=false)
-    private Classification classification;*/
 	
 	@Column(name="cd_classification", nullable=false)
     private Long classification;
@@ -86,28 +73,17 @@ public class Product extends BasicEntity{
 		this.description = description;
 	}
 
-	/*public BigDecimal getUnitaryPrice() {
-		return unitaryPrice;
-	}
-
-	public void setUnitaryPrice(BigDecimal unitaryPrice) {
-		this.unitaryPrice = unitaryPrice;
-	}*/
-
-	/*public MeasurementUnit getMeasurementUnit() {
-		return measurementUnit;
-	}
-
-	public void setMeasurementUnit(MeasurementUnit measurementUnit) {
-		this.measurementUnit = measurementUnit;
-	}*/
-
 	public Long getClassification() {
 		return classification;
 	}
 
 	public void setClassification(Long classification) {
 		this.classification = classification;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: "+id+" | Nome: "+name+ " | Descrição: "+description;
 	}
 	
 }

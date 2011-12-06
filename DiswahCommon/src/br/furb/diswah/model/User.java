@@ -64,4 +64,8 @@ public class User extends BasicEntity {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "Id: "+id+" | Nome: "+login+" | Email: "+email;
+	}
 }

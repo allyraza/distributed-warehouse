@@ -70,4 +70,9 @@ public class Client extends BasicEntity {
 		this.sales = sales;
 	}*/
 	
+	@Override
+	public String toString() {
+		return "Id: "+id+" | Nome: "+name+" | Endereço: "+address;
+	}
+	
 }

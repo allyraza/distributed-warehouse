@@ -64,4 +64,9 @@ public class Classification extends BasicEntity {
 		this.description = description;
 	}
 	
+	@Override
+	public String toString() {
+		return "Id: "+id+" | Nome: "+name+ " | Descrição: "+description;
+	}
+	
 }

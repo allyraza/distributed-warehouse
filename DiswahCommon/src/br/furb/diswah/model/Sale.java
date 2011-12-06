@@ -29,18 +29,9 @@ public class Sale extends BasicEntity {
     @Column(name = "id_sale", nullable = false)
     private Long id;
 	
-	/*@NotNull
-    @ForeignKey(name="fk_sale_client")
-    @ManyToOne(targetEntity= Client.class, cascade= CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name="client_id_client", nullable=false)
-    private Client client;*/
 	
 	@Column(name = "cd_client")
     private Long client;
-	
-	/*@ForeignKey(name = "fk_saleproduct_sale")
-	@OneToMany(targetEntity = SaleProduct.class, cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "sale")
-	private List<SaleProduct> saleProducts;*/
 	
 	@Override
 	public Long getId() {
@@ -59,13 +50,10 @@ public class Sale extends BasicEntity {
 	public void setClient(Long client) {
 		this.client = client;
 	}
-
-	/*public List<SaleProduct> getSaleProducts() {
-		return saleProducts;
+	
+	@Override
+	public String toString() {
+		return "Id: "+id+" | Nome: "+client;
 	}
-
-	public void setSaleProducts(List<SaleProduct> saleProducts) {
-		this.saleProducts = saleProducts;
-	}*/
 
 }
