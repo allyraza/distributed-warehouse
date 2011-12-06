@@ -1,0 +1,21 @@
+module register {
+
+  interface ClassificationRegister {
+    string save(in string p1);
+	string find(in long p1);
+	string list();
+  };
+  
+  interface ProductRegister {
+    string save(in string p1);
+	string find(in long p1);
+	string list();
+  };
+  
+  interface UserRegister {
+    string save(in string p1);
+	string find(in long p1);
+	string list();
+  };
+    
+};

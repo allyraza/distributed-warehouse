@@ -1,4 +1,4 @@
-program SaleRegister{
+program SaleProductRegister{
 	version v1 {
 		string save(string)=1;
 		string find(Long)=2;
