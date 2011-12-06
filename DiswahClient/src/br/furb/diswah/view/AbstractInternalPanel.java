@@ -1,11 +1,15 @@
 package br.furb.diswah.view;
 
-import java.awt.Dimension;
+import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.plaf.BorderUIResource.BevelBorderUIResource;
+
+import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -25,8 +29,6 @@ public abstract class AbstractInternalPanel extends JPanel{
 	
 	protected abstract void createComponents();
 	
-	public abstract Dimension getSize();
-	
 	protected abstract String getMessagesProperty();
 	
 	/**
@@ -34,14 +36,9 @@ public abstract class AbstractInternalPanel extends JPanel{
 	 */
 	private void configPanel() {
 		this.setLayout(new MigLayout("insets 30","grow","grow"));
-		this.setMinimumSize(getSize());
-		this.setPreferredSize(getSize());
-		this.setMaximumSize(getSize());
-
-		internalPanel = new JPanel(new MigLayout("insets 15","grow","grow"));
-		internalPanel.setBorder(BorderFactory.createEtchedBorder(3));
-		
-		add(internalPanel);
+		internalPanel = new JPanel(new MigLayout("debug, insets 15","grow","grow"));
+		internalPanel.setBorder(BorderFactory.createBevelBorder(BevelBorderUIResource.LOWERED));
+		add(internalPanel,"grow");
 	}
 	
 	public void addComponent(JComponent component, String constraints, String label){

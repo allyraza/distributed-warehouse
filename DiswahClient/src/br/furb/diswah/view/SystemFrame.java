@@ -1,6 +1,6 @@
 package br.furb.diswah.view;
 
-import java.awt.Toolkit;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,10 +41,11 @@ public class SystemFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(MessageBundle.getMessage("frame.system.title"));
 		setIconImage(new ImageIcon(ClassLoader.getSystemResource("warehouse.png")).getImage());
-
 		setLayout(new MigLayout("insets 10","grow","grow"));
-		setExtendedState(MAXIMIZED_BOTH);
-		setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
+		setMinimumSize(new Dimension(500,600));
+		setMaximumSize(new Dimension(500,600));
+		setPreferredSize(new Dimension(500,600));
+		setResizable(false);
 	}
 
 	/**
@@ -62,6 +63,12 @@ public class SystemFrame extends JFrame {
 		
 		JMenu registerMenu = new JMenu(MessageBundle.getMessage("frame.menubar.register"));
 			JMenuItem classificationMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.classification"));
+			classificationMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setContentPane(new ClassificationView());
+				}
+			});
 			registerMenu.add(classificationMenuItem);
 			
 			JMenuItem productMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.product"));
@@ -71,16 +78,6 @@ public class SystemFrame extends JFrame {
 			registerMenu.add(userMenuItem);
 			
 			JMenuItem clientMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menu.client"));
-			//Evento do menu Cliente
-			clientMenuItem.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					AbstractInternalPanel telaCliente = new ClientsView();
-					SystemFrame.this.setContentPane(telaCliente);
-					
-				}
-			});
 			registerMenu.add(clientMenuItem);
 			
 		menuBar.add(registerMenu);
@@ -88,15 +85,21 @@ public class SystemFrame extends JFrame {
 		JMenu saleMenu = new JMenu(MessageBundle.getMessage("frame.menubar.sale"));
 		menuBar.add(saleMenu);
 		
-		JMenu reportMenu = new JMenu(MessageBundle.getMessage("frame.menubar.report"));
-		menuBar.add(reportMenu);
+			JMenuItem saleMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menubar.sale"));
+			saleMenu.add(saleMenuItem);
 		
+			JMenuItem saleProductMenuItem = new JMenuItem(MessageBundle.getMessage("frame.menubar.saleproduct"));
+			saleMenu.add(saleProductMenuItem);
+			
 		JMenu logoutMenu = new JMenu(MessageBundle.getMessage("frame.menubar.logout"));
 		menuBar.add(logoutMenu);
 		
 		setJMenuBar(menuBar);
 	}
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new SystemFrame().setVisible(true);
 	}
