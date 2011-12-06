@@ -14,13 +14,14 @@ import net.miginfocom.swing.MigLayout;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
 public abstract class AbstractInternalPanel extends JPanel{
+
+	private JPanel internalPanel;
 	
 	public AbstractInternalPanel(){
 		configPanel();
 		createComponents();
 		setVisible(true);
 	}
-
 	
 	protected abstract void createComponents();
 	
@@ -32,16 +33,20 @@ public abstract class AbstractInternalPanel extends JPanel{
 	 * 
 	 */
 	private void configPanel() {
-		this.setLayout(new MigLayout("insets 10","grow","grow"));
+		this.setLayout(new MigLayout("insets 30","grow","grow"));
 		this.setMinimumSize(getSize());
 		this.setPreferredSize(getSize());
 		this.setMaximumSize(getSize());
-		this.setBorder(BorderFactory.createEtchedBorder());
+
+		internalPanel = new JPanel(new MigLayout("insets 15","grow","grow"));
+		internalPanel.setBorder(BorderFactory.createEtchedBorder(3));
+		
+		add(internalPanel);
 	}
 	
 	public void addComponent(JComponent component, String constraints, String label){
-		this.add(new JLabel(label),"");
-		this.add(component,constraints);
+		internalPanel.add(new JLabel(label),"");
+		internalPanel.add(component,constraints);
 	}
 	
 }

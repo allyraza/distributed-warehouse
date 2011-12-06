@@ -63,6 +63,8 @@ public class MainServer {
 		namecontextRef.rebind(pathUser, hrefUser);
 
 		System.out.println("Servidor aguardando requisicoes ....");
+		
+		orb.run();
 	}
 	
 }

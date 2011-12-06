@@ -139,6 +139,7 @@ public class LoginScreen extends JFrame{
 					});
 					setVisible(false);
 				} catch (Throwable e) {
+					e.printStackTrace();
 					JOptionPane.showMessageDialog(LoginScreen.this, 
 												  e.getCause().getMessage(),
 												  MessageBundle.getMessage("modal.title.error"),
