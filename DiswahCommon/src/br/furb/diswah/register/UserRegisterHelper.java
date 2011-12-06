@@ -1,10 +1,12 @@
 package br.furb.diswah.register;
 
+import br.furb.diswah.transport.Helper;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public class UserRegisterHelper {
+public class UserRegisterHelper implements Helper<UserRegister> {
 
 	private static String _id = "IDL:register/UserRegister:1.0";
 
