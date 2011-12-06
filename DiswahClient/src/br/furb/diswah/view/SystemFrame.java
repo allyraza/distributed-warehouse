@@ -47,7 +47,8 @@ public class SystemFrame extends JFrame {
 		setMinimumSize(new Dimension(500,600));
 		setMaximumSize(new Dimension(500,600));
 		setPreferredSize(new Dimension(500,600));
-		setResizable(false);
+		//setResizable(false);
+		
 	}
 
 	/**

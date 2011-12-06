@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.plaf.BorderUIResource.BevelBorderUIResource;
 
 import net.miginfocom.swing.MigLayout;
@@ -24,8 +25,7 @@ import br.furb.diswah.resource.MessageBundle;
 public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPanel implements ActionListener {
 
 	private JPanel internalPanel;
-	private JTable tbData;
-	private DefaultTableModel tableModel;
+	private JTextArea areaImpressao;
 	
 	private JButton btSave;
 	private JButton btClear;
@@ -49,7 +49,7 @@ public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPane
 	 */
 	private void configPanel() {
 		this.setLayout(new MigLayout("insets 30","grow","grow"));
-		internalPanel = new JPanel(new MigLayout("debug, insets 15","grow","grow"));
+		internalPanel = new JPanel(new MigLayout("insets 15","grow","grow"));
 		internalPanel.setBorder(BorderFactory.createBevelBorder(BevelBorderUIResource.LOWERED));
 		add(internalPanel,"grow");
 	}
@@ -62,21 +62,26 @@ public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPane
 	private void createButtons(){
 		btSave = new JButton(MessageBundle.getMessage("panel.button.save"));
 		internalPanel.add(btSave,"align left");
+		btSave.addActionListener(this);
 		
 		btClear = new JButton(MessageBundle.getMessage("panel.button.clear"));
-		internalPanel.add(btSave,"align right, wrap");
+		internalPanel.add(btClear,"align right, wrap");
+		btClear.addActionListener(this);
 	}
 	
 	protected void createTable(){
-		tbData = new JTable(new DefaultTableModel(getEntityClass()));
-		tableModel = new DefaultTableModel(getEntityClass());
-		tbData.setModel(tableModel);
-		JScrollPane jsp = new JScrollPane(tbData);
+		
+		areaImpressao = new JTextArea();
+		JScrollPane jsp = new JScrollPane(areaImpressao);
 		internalPanel.add(jsp,"span, align center, growy, growx");
 	}
 	
 	protected void refreshData(List<T> data){
-		tableModel.refresh(data);
+		
+		for (T t : data) {
+			areaImpressao.append(t.toString()+"\n");
+		}
+		
 	}
 	
 	@Override

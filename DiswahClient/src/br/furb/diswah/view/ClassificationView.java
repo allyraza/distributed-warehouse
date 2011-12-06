@@ -30,7 +30,7 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 	 */
 	public ClassificationView() {
 		super();
-		showData();
+		//showData();
 	}
 
 	@Override
