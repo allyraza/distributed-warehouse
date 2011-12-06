@@ -35,11 +35,11 @@ public class Client extends BasicEntity {
     private String name;
 	
 	@NotBlank
-	@Column(name = "ds_name", nullable = false, length = 200)
+	@Column(name = "ds_address", nullable = false, length = 200)
     private String address;
 	
 	@ForeignKey(name = "fk_sale_client")
-	@OneToMany(targetEntity = Sale.class, cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "client")
+	@OneToMany(targetEntity = Sale.class, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "client")
 	private List<Sale> sales;
 	
 	@Override

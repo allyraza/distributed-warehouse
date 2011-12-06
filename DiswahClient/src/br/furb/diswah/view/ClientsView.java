@@ -4,7 +4,6 @@ import javax.swing.JTextField;
 
 import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.model.Client;
-import br.furb.diswah.register.ClientRegister;
 import br.furb.diswah.register.ClientRegisterClient;
 import br.furb.diswah.transport.BasicTransport;
 import br.furb.diswah.transport.TransportFactory;

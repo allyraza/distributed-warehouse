@@ -36,9 +36,12 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="br.furb.diswah.model.User"/>
         <mapping class="br.furb.diswah.model.Classification"/>
+        <mapping class="br.furb.diswah.model.Client"/>
         <mapping class="br.furb.diswah.model.Product"/>
+        <mapping class="br.furb.diswah.model.Sale"/>
+        <mapping class="br.furb.diswah.model.SaleProduct"/>
+        <mapping class="br.furb.diswah.model.User"/>
          
 
     </session-factory>
