@@ -69,8 +69,19 @@ public class ClientsView extends AbstractInternalPanel<Client>{
 
 	@Override
 	protected void save() {
-		// TODO Auto-generated method stub
-		
+		Client client = new Client();
+		client.setName(name.getText());
+		client.setAddress(address.getText());
+		TransportProperties properties = new TransportProperties();
+		properties.setHost(PropertiesBundle.getProperty("server.rpc.host"));
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.RPC);
+		try {
+			ClientRegisterClient cr = bt.requestInterface(ClientRegisterClient.class, new Object[]{});
+			cr.save(client);
+			refreshData(cr.list());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class ProductsView extends AbstractInternalPanel<Product> {
 		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
-			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.class});
+			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.getInstance()});
 			refreshData(Utils.deserializeObject(List.class, cr.list()));
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -76,15 +76,18 @@ public class ProductsView extends AbstractInternalPanel<Product> {
 		return Product.class;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void save() {
 		Product product = new Product();
 		product.setCode(Long.valueOf(code.getText()));
+		product.setName(name.getText());
+		product.setDescription(description.getText());
 		TransportProperties properties = new TransportProperties();
 		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
-			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.class});
+			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.getInstance()});
 			cr.save(Utils.serializeObject(product));
 			refreshData(Utils.deserializeObject(List.class, cr.list()));
 		} catch (Throwable e) {

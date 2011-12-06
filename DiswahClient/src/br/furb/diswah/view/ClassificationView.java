@@ -30,7 +30,7 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 	 */
 	public ClassificationView() {
 		super();
-		//showData();
+		showData();
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
-			ClassificationRegister cr = bt.requestInterface(ClassificationRegister.class, new Object[]{ClassificationRegisterHelper.class});
+			ClassificationRegister cr = bt.requestInterface(ClassificationRegister.class, new Object[]{ClassificationRegisterHelper.getInstance()});
 			refreshData(Utils.deserializeObject(List.class, cr.list()));
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -78,7 +78,20 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 
 	@Override
 	protected void save() {
-		// TODO Auto-generated method stub
+		Classification classification = new Classification();
+		classification.setCode(Long.valueOf(code.getText()));
+		classification.setName(name.getText());
+		classification.setDescription(description.getText());
+		TransportProperties properties = new TransportProperties();
+		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
+		try {
+			ClassificationRegister cr = bt.requestInterface(ClassificationRegister.class, new Object[]{ClassificationRegisterHelper.getInstance()});
+			cr.save(Utils.serializeObject(classification));
+			refreshData(Utils.deserializeObject(List.class, cr.list()));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

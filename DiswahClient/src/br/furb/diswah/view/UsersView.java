@@ -59,7 +59,7 @@ public class UsersView extends AbstractInternalPanel<User>  {
 		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
-			UserRegister cr = bt.requestInterface(UserRegister.class, new Object[]{UserRegisterHelper.class});
+			UserRegister cr = bt.requestInterface(UserRegister.class, new Object[]{UserRegisterHelper.getInstance()});
 			refreshData(Utils.deserializeObject(List.class, cr.list()));
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -87,7 +87,7 @@ public class UsersView extends AbstractInternalPanel<User>  {
 		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
-			UserRegister cr = bt.requestInterface(UserRegister.class, new Object[]{UserRegisterHelper.class});
+			UserRegister cr = bt.requestInterface(UserRegister.class, new Object[]{UserRegisterHelper.getInstance()});
 			cr.save(Utils.serializeObject(user));
 			refreshData(Utils.deserializeObject(List.class, cr.list()));
 			clear();
