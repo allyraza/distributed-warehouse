@@ -1,4 +1,4 @@
-package br.furb.diswah.transport.corba;
+package br.furb.diswah.transport;
 
 import org.omg.CORBA.Any;
 import org.omg.CORBA.TypeCode;

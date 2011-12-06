@@ -4,45 +4,54 @@ package br.furb.diswah.register;
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public abstract class ProductRegisterHelper {
+public class ProductRegisterHelper {
+	
 	private static String _id = "IDL:register/ProductRegister:1.0";
 
-	public static void insert(org.omg.CORBA.Any a, ProductRegister that) {
+	private static org.omg.CORBA.TypeCode __typeCode = null;
+	
+	private static ProductRegisterHelper instance;
+	
+	public static ProductRegisterHelper getInstance(){
+		if(instance == null)
+			instance = new ProductRegisterHelper();
+		
+		return instance;
+	}
+	
+	public void insert(org.omg.CORBA.Any a, ProductRegister that) {
 		org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
 		a.type(type());
 		write(out, that);
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static ProductRegister extract(org.omg.CORBA.Any a) {
+	public ProductRegister extract(org.omg.CORBA.Any a) {
 		return read(a.create_input_stream());
 	}
 
-	private static org.omg.CORBA.TypeCode __typeCode = null;
-
-	synchronized public static org.omg.CORBA.TypeCode type() {
+	synchronized public org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-					ProductRegisterHelper.id(), "ProductRegister");
+			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(id(), "ProductRegister");
 		}
 		return __typeCode;
 	}
 
-	public static String id() {
+	public String id() {
 		return _id;
 	}
 
-	public static ProductRegister read(
+	public ProductRegister read(
 			org.omg.CORBA.portable.InputStream istream) {
 		return narrow(istream.read_Object(_ProductRegisterStub.class));
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+	public void write(org.omg.CORBA.portable.OutputStream ostream,
 			ProductRegister value) {
 		ostream.write_Object((org.omg.CORBA.Object) value);
 	}
 
-	public static ProductRegister narrow(org.omg.CORBA.Object obj) {
+	public ProductRegister narrow(org.omg.CORBA.Object obj) {
 		if (obj == null)
 			return null;
 		else if (obj instanceof ProductRegister)
@@ -58,7 +67,7 @@ public abstract class ProductRegisterHelper {
 		}
 	}
 
-	public static ProductRegister unchecked_narrow(org.omg.CORBA.Object obj) {
+	public ProductRegister unchecked_narrow(org.omg.CORBA.Object obj) {
 		if (obj == null)
 			return null;
 		else if (obj instanceof ProductRegister)

@@ -16,15 +16,15 @@ public final class ProductRegisterHolder implements org.omg.CORBA.portable.Strea
 	}
 
 	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = ProductRegisterHelper.read(i);
+		value = ProductRegisterHelper.getInstance().read(i);
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		ProductRegisterHelper.write(o, value);
+		ProductRegisterHelper.getInstance().write(o, value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {
-		return ProductRegisterHelper.type();
+		return ProductRegisterHelper.getInstance().type();
 	}
 
 }

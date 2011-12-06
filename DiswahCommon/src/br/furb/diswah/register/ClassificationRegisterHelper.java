@@ -1,49 +1,65 @@
 package br.furb.diswah.register;
 
+import org.omg.CORBA.Any;
+import org.omg.CORBA.TypeCode;
+import org.omg.CORBA.portable.Delegate;
+import org.omg.CORBA.portable.InputStream;
+import org.omg.CORBA.portable.ObjectImpl;
+import org.omg.CORBA.portable.OutputStream;
+
+import br.furb.diswah.transport.Helper;
+
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  */
-public abstract class ClassificationRegisterHelper {
+public class ClassificationRegisterHelper implements Helper<ClassificationRegister>{
+	
 	private static String _id = "IDL:register/ClassificationRegister:1.0";
 
-	public static void insert(org.omg.CORBA.Any a, ClassificationRegister that) {
-		org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
+	private static org.omg.CORBA.TypeCode __typeCode = null;
+	
+	private static ClassificationRegisterHelper instance;
+	
+	public static ClassificationRegisterHelper getInstance(){
+		if(instance == null)
+			instance = new ClassificationRegisterHelper();
+		
+		return instance;
+	}
+
+	public void insert(Any a, ClassificationRegister that) {
+		OutputStream out = a.create_output_stream();
 		a.type(type());
 		write(out, that);
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static ClassificationRegister extract(org.omg.CORBA.Any a) {
+	public ClassificationRegister extract(Any a) {
 		return read(a.create_input_stream());
 	}
 
-	private static org.omg.CORBA.TypeCode __typeCode = null;
 
-	synchronized public static org.omg.CORBA.TypeCode type() {
+	public synchronized TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init()
-					.create_interface_tc(ClassificationRegisterHelper.id(),
-							"ClassificationRegister");
+			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(id(),"ClassificationRegister");
 		}
 		return __typeCode;
 	}
 
-	public static String id() {
+	public String id() {
 		return _id;
 	}
 
-	public static ClassificationRegister read(
-			org.omg.CORBA.portable.InputStream istream) {
+	public ClassificationRegister read(InputStream istream) {
 		return narrow(istream.read_Object(_ClassificationRegisterStub.class));
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream,
-			ClassificationRegister value) {
+	public void write(OutputStream ostream, ClassificationRegister value) {
 		ostream.write_Object((org.omg.CORBA.Object) value);
 	}
 
-	public static ClassificationRegister narrow(org.omg.CORBA.Object obj) {
+	public ClassificationRegister narrow(org.omg.CORBA.Object obj) {
 		if (obj == null)
 			return null;
 		else if (obj instanceof ClassificationRegister)
@@ -51,23 +67,20 @@ public abstract class ClassificationRegisterHelper {
 		else if (!obj._is_a(id()))
 			throw new org.omg.CORBA.BAD_PARAM();
 		else {
-			org.omg.CORBA.portable.Delegate delegate = ((org.omg.CORBA.portable.ObjectImpl) obj)
-					._get_delegate();
+			Delegate delegate = ((ObjectImpl) obj)._get_delegate();
 			_ClassificationRegisterStub stub = new _ClassificationRegisterStub();
 			stub._set_delegate(delegate);
 			return stub;
 		}
 	}
 
-	public static ClassificationRegister unchecked_narrow(
-			org.omg.CORBA.Object obj) {
+	public ClassificationRegister unchecked_narrow(org.omg.CORBA.Object obj) {
 		if (obj == null)
 			return null;
 		else if (obj instanceof ClassificationRegister)
 			return (ClassificationRegister) obj;
 		else {
-			org.omg.CORBA.portable.Delegate delegate = ((org.omg.CORBA.portable.ObjectImpl) obj)
-					._get_delegate();
+			Delegate delegate = ((ObjectImpl) obj)._get_delegate();
 			_ClassificationRegisterStub stub = new _ClassificationRegisterStub();
 			stub._set_delegate(delegate);
 			return stub;

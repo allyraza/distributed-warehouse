@@ -70,11 +70,11 @@ public abstract class ProductRegisterPOA extends org.omg.PortableServer.Servant 
 	}
 
 	public ProductRegister _this() {
-		return ProductRegisterHelper.narrow(super._this_object());
+		return ProductRegisterHelper.getInstance().narrow(super._this_object());
 	}
 
 	public ProductRegister _this(org.omg.CORBA.ORB orb) {
-		return ProductRegisterHelper.narrow(super._this_object(orb));
+		return ProductRegisterHelper.getInstance().narrow(super._this_object(orb));
 	}
 
 }

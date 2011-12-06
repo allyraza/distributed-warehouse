@@ -2,8 +2,6 @@ package br.furb.diswah.test;
 
 import br.furb.diswah.connection.PropertiesBundle;
 import br.furb.diswah.exception.CommunicationException;
-import br.furb.diswah.storage.corba.EntityStorage;
-import br.furb.diswah.storage.corba.EntityStorageHelper;
 import br.furb.diswah.transport.BasicTransport;
 import br.furb.diswah.transport.TransportFactory;
 import br.furb.diswah.transport.TransportMethod;
@@ -19,8 +17,9 @@ public class CorbaTest {
 		TransportProperties properties = new TransportProperties();
 		properties.setHost(PropertiesBundle.getProperty("server.persistence.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
-		
-		bt.requestInterface(EntityStorage.class, new Object[]{EntityStorageHelper.class});
+
+		System.out.println(bt);
+		//bt.requestInterface(EntityStorage.class, new Object[]{EntityStorageHelper.class});
 	}
 
 }

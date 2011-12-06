@@ -16,15 +16,15 @@ public final class ClassificationRegisterHolder implements org.omg.CORBA.portabl
 	}
 
 	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = ClassificationRegisterHelper.read(i);
+		value = ClassificationRegisterHelper.getInstance().read(i);
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		ClassificationRegisterHelper.write(o, value);
+		ClassificationRegisterHelper.getInstance().write(o, value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {
-		return ClassificationRegisterHelper.type();
+		return ClassificationRegisterHelper.getInstance().type();
 	}
 
 }

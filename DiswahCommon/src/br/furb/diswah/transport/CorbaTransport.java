@@ -5,7 +5,6 @@ import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 
 import br.furb.diswah.exception.CommunicationException;
-import br.furb.diswah.transport.corba.Helper;
 
 /**
  * 
