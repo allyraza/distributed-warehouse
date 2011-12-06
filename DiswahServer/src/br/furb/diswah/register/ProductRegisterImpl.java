@@ -52,7 +52,7 @@ public class ProductRegisterImpl extends ProductRegisterPOA {
 	private ProductStorage getStorage(){
 		try {
 			TransportProperties prop = new TransportProperties();
-			prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
+			prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 			return TransportFactory.createCommunication(prop, TransportMethod.RMI)
 								   .requestInterface(ProductStorage.class, new Object[]{});
 		} catch (CommunicationException e) {

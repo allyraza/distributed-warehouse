@@ -1,19 +1,13 @@
 package br.furb.diswah.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.AccessType;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -38,9 +32,9 @@ public class Client extends BasicEntity {
 	@Column(name = "ds_address", nullable = false, length = 200)
     private String address;
 	
-	@ForeignKey(name = "fk_sale_client")
+	/*@ForeignKey(name = "fk_sale_client")
 	@OneToMany(targetEntity = Sale.class, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "client")
-	private List<Sale> sales;
+	private List<Sale> sales;*/
 	
 	@Override
 	public Long getId() {
@@ -68,12 +62,12 @@ public class Client extends BasicEntity {
 		this.address = address;
 	}
 
-	public List<Sale> getSales() {
+	/*public List<Sale> getSales() {
 		return sales;
 	}
 
 	public void setSales(List<Sale> sales) {
 		this.sales = sales;
-	}
+	}*/
 	
 }

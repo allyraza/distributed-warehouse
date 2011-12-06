@@ -17,7 +17,7 @@ public class RPCTransport extends BasicTransport {
 	public <T> T requestInterface(Class<T> target, Object[] params) throws CommunicationException {
 		try {
 			return target.getConstructor(String.class, String.class).newInstance(getProperties().getHost(),
-																				 PropertiesBundle.getProperty("server.sales.protocol"));
+																				 PropertiesBundle.getProperty("server.rpc.protocol"));
 		} catch (Exception e) {
 			throw new CommunicationException(String.format("Ocorreu um erro ao instanciar a classe '%s'",target.getSimpleName()), e);
 		}

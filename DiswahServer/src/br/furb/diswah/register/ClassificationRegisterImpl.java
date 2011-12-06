@@ -52,7 +52,7 @@ public class ClassificationRegisterImpl extends ClassificationRegisterPOA {
 	private ClassificationStorage getStorage(){
 		try {
 			TransportProperties prop = new TransportProperties();
-			prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
+			prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 			return TransportFactory.createCommunication(prop, TransportMethod.RMI)
 								   .requestInterface(ClassificationStorage.class, new Object[]{});
 		} catch (CommunicationException e) {

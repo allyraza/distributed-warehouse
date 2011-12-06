@@ -14,7 +14,7 @@ public final class Utils {
 	}
 	
 	public static String serializeObject(Object obj){
-		return new JSONSerializer().deepSerialize(obj);
+		return new JSONSerializer().deepSerialize(obj); 
 	}
 	
 }

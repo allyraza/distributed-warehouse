@@ -62,7 +62,7 @@ public class SalesRegisterImpl extends AbstractSalesRegister {
 	private SaleStorage getSaleStorage() throws CommunicationException{
 		if(saleStorage == null){
 			TransportProperties prop = new TransportProperties();
-			prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
+			prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 			
 			BasicTransport transport = TransportFactory.createCommunication(prop, TransportMethod.RMI);
 		

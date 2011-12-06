@@ -50,7 +50,7 @@ public class SaleRegisterImpl extends AbstractSaleRegister {
 	private SaleStorage getStorage(){
 		try {
 			TransportProperties prop = new TransportProperties();
-			prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
+			prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 			return TransportFactory.createCommunication(prop, TransportMethod.RMI)
 								   .requestInterface(SaleStorage.class, new Object[]{});
 		} catch (CommunicationException e) {

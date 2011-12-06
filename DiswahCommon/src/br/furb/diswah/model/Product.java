@@ -1,25 +1,15 @@
 package br.furb.diswah.model;
 
-import java.math.BigDecimal;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.AccessType;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.NotBlank;
-
-import br.furb.diswah.model.enums.MeasurementUnit;
 
 /**
  * 
@@ -47,19 +37,22 @@ public class Product extends BasicEntity{
 	@Column(name = "ds_description", nullable = false, length = 200)
     private String description;
 	
-	@NotNull
+	/*@NotNull
 	@Column(name = "vl_unitary_price", precision = 18, scale = 2, nullable = false)
-	private BigDecimal unitaryPrice;
+	private BigDecimal unitaryPrice;*/
 	
-	@Enumerated
+	/*@Enumerated
     @Column(name="tp_measurement_unit")
-	private MeasurementUnit measurementUnit;
+	private MeasurementUnit measurementUnit;*/
 	
-	@NotNull
+	/*@NotNull
     @ForeignKey(name="fk_product_classification")
     @ManyToOne(targetEntity= Classification.class, cascade= CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name="classification_id_classification", nullable=false)
-    private Classification classification;
+    private Classification classification;*/
+	
+	@Column(name="cd_classification", nullable=false)
+    private Long classification;
 	
 	public Long getId() {
 		return id;
@@ -93,27 +86,27 @@ public class Product extends BasicEntity{
 		this.description = description;
 	}
 
-	public BigDecimal getUnitaryPrice() {
+	/*public BigDecimal getUnitaryPrice() {
 		return unitaryPrice;
 	}
 
 	public void setUnitaryPrice(BigDecimal unitaryPrice) {
 		this.unitaryPrice = unitaryPrice;
-	}
+	}*/
 
-	public MeasurementUnit getMeasurementUnit() {
+	/*public MeasurementUnit getMeasurementUnit() {
 		return measurementUnit;
 	}
 
 	public void setMeasurementUnit(MeasurementUnit measurementUnit) {
 		this.measurementUnit = measurementUnit;
-	}
+	}*/
 
-	public Classification getClassification() {
+	public Long getClassification() {
 		return classification;
 	}
 
-	public void setClassification(Classification classification) {
+	public void setClassification(Long classification) {
 		this.classification = classification;
 	}
 	

@@ -22,18 +22,4 @@ public class ProductStorageImpl extends AbstractEntityStorage<Product> implement
 		return Product.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see br.furb.diswah.storage.AbstractEntityStorage#beforeSave(br.furb.diswah.model.BasicEntity)
-	 */
-	@Override
-	protected void beforeSave(Product value) {
-		if(value.getClassification() != null && (value.getClassification().getId() == null || 
-												 value.getClassification().getId() == 0)){
-			try {
-				new ClassificationStorageImpl().save(value.getClassification());
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }
