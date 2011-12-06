@@ -47,7 +47,7 @@ public class ClientsView extends AbstractInternalPanel<Client>{
 	 */
 	private void showData() {
 		TransportProperties properties = new TransportProperties();
-		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
+		properties.setHost(PropertiesBundle.getProperty("server.rpc.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.RPC);
 		try {
 			ClientRegisterClient cr = bt.requestInterface(ClientRegisterClient.class, new Object[]{});
@@ -65,6 +65,19 @@ public class ClientsView extends AbstractInternalPanel<Client>{
 	@Override
 	protected Class<Client> getEntityClass() {
 		return Client.class;
+	}
+
+	@Override
+	protected void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void clear() {
+		id.setText("");
+		name.setText("");
+		address.setText("");
 	}
 
 }

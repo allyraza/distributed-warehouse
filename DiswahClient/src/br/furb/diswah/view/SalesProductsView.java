@@ -17,8 +17,8 @@ import br.furb.diswah.transport.TransportProperties;
 public class SalesProductsView extends AbstractInternalPanel<SaleProduct> {
 
 	private JTextField id;
-	private JTextField name;
-	private JTextField address;
+	private JTextField sale;
+	private JTextField product;
 	
 	/**
 	 * 
@@ -35,11 +35,11 @@ public class SalesProductsView extends AbstractInternalPanel<SaleProduct> {
 		id.setFocusable(false);
 		addComponent(id, "growx, wrap", "id");
 		
-		name = new JTextField();
-		addComponent(name, "growx, wrap", "name");
+		sale = new JTextField();
+		addComponent(sale, "growx, wrap", "name");
 		
-		address = new JTextField();
-		addComponent(address, "growx, wrap", "address");
+		product = new JTextField();
+		addComponent(product, "growx, wrap", "address");
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class SalesProductsView extends AbstractInternalPanel<SaleProduct> {
 	 */
 	private void showData() {
 		TransportProperties properties = new TransportProperties();
-		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
+		properties.setHost(PropertiesBundle.getProperty("server.rpc.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.RPC);
 		try {
 			SaleProductRegisterClient cr = bt.requestInterface(SaleProductRegisterClient.class, new Object[]{});
@@ -65,6 +65,30 @@ public class SalesProductsView extends AbstractInternalPanel<SaleProduct> {
 	@Override
 	protected Class<SaleProduct> getEntityClass() {
 		return SaleProduct.class;
+	}
+
+	@Override
+	protected void save() {
+		SaleProduct saleProduct = new SaleProduct();
+		saleProduct.setProduct(Long.valueOf(product.getText()));
+		saleProduct.setSale(Long.valueOf(sale.getText()));
+		TransportProperties properties = new TransportProperties();
+		properties.setHost(PropertiesBundle.getProperty("server.rpc.host"));
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.RPC);
+		try {
+			SaleProductRegisterClient cr = bt.requestInterface(SaleProductRegisterClient.class, new Object[]{});
+			cr.save(saleProduct);
+			refreshData(cr.list());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void clear() {
+		id.setText("");
+		sale.setText("");
+		product.setText("");
 	}
 
 }

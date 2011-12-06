@@ -25,6 +25,7 @@ public class DefaultTableModel extends AbstractTableModel {
 	public void refresh(List<? extends BasicEntity> data) {
 		if(data != null){
 			this.data = data;
+			fireTableStructureChanged();
 			fireTableDataChanged();
 		}
 	}
@@ -59,7 +60,7 @@ public class DefaultTableModel extends AbstractTableModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "";
 	}
 
 	@Override

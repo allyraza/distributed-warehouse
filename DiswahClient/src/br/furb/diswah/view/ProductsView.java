@@ -21,8 +21,9 @@ import br.furb.diswah.util.Utils;
 public class ProductsView extends AbstractInternalPanel<Product> {
 
 	private JTextField id;
+	private JTextField code;
 	private JTextField name;
-	private JTextField address;
+	private JTextField description;
 	
 	/**
 	 * 
@@ -39,11 +40,14 @@ public class ProductsView extends AbstractInternalPanel<Product> {
 		id.setFocusable(false);
 		addComponent(id, "growx, wrap", "id");
 		
+		code = new JTextField();
+		addComponent(code, "growx, wrap", "name");
+		
 		name = new JTextField();
 		addComponent(name, "growx, wrap", "name");
 		
-		address = new JTextField();
-		addComponent(address, "growx, wrap", "address");
+		description = new JTextField();
+		addComponent(description, "growx, wrap", "address");
 	}
 
 	/**
@@ -52,7 +56,7 @@ public class ProductsView extends AbstractInternalPanel<Product> {
 	@SuppressWarnings("unchecked")
 	private void showData() {
 		TransportProperties properties = new TransportProperties();
-		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
+		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
 			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.class});
@@ -70,6 +74,31 @@ public class ProductsView extends AbstractInternalPanel<Product> {
 	@Override
 	protected Class<Product> getEntityClass() {
 		return Product.class;
+	}
+
+	@Override
+	protected void save() {
+		Product product = new Product();
+		product.setCode(Long.valueOf(code.getText()));
+		TransportProperties properties = new TransportProperties();
+		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
+		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
+		try {
+			ProductRegister cr = bt.requestInterface(ProductRegister.class, new Object[]{ProductRegisterHelper.class});
+			cr.save(Utils.serializeObject(product));
+			refreshData(Utils.deserializeObject(List.class, cr.list()));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	protected void clear() {
+		id.setText("");
+		code.setText("");
+		name.setText("");
+		description.setText("");
 	}
 	
 }

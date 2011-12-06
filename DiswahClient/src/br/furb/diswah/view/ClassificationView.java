@@ -21,8 +21,9 @@ import br.furb.diswah.util.Utils;
 public class ClassificationView extends AbstractInternalPanel<Classification> {
 
 	private JTextField id;
+	private JTextField code;
 	private JTextField name;
-	private JTextField address;
+	private JTextField description;
 	
 	/**
 	 * 
@@ -39,11 +40,14 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 		id.setFocusable(false);
 		addComponent(id, "growx, wrap", "id");
 		
+		code = new JTextField();
+		addComponent(code, "growx, wrap", "name");
+		
 		name = new JTextField();
 		addComponent(name, "growx, wrap", "name");
 		
-		address = new JTextField();
-		addComponent(address, "growx, wrap", "address");
+		description = new JTextField();
+		addComponent(description, "growx, wrap", "address");
 	}
 
 	/**
@@ -52,7 +56,7 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 	@SuppressWarnings("unchecked")
 	private void showData() {
 		TransportProperties properties = new TransportProperties();
-		properties.setHost(PropertiesBundle.getProperty("server.sales.host"));
+		properties.setHost(PropertiesBundle.getProperty("server.corba.host"));
 		BasicTransport bt = TransportFactory.createCommunication(properties, TransportMethod.CORBA);
 		try {
 			ClassificationRegister cr = bt.requestInterface(ClassificationRegister.class, new Object[]{ClassificationRegisterHelper.class});
@@ -70,6 +74,19 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 	@Override
 	protected Class<Classification> getEntityClass() {
 		return Classification.class;
+	}
+
+	@Override
+	protected void save() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void clear() {
+		id.setText("");
+		code.setText("");
+		name.setText("");
+		description.setText("");
 	}
 	
 }

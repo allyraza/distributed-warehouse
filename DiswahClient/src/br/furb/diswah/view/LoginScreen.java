@@ -123,7 +123,7 @@ public class LoginScreen extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TransportProperties prop = new TransportProperties();
-				prop.setHost(PropertiesBundle.getProperty("server.persistence.host"));
+				prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 				try {
 					LoginService service = TransportFactory.createCommunication(prop, TransportMethod.RMI)
 														   .requestInterface(LoginService.class, new Object[]{});
