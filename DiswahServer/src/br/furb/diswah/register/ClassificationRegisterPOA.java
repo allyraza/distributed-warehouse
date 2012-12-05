@@ -69,10 +69,17 @@ public abstract class ClassificationRegisterPOA extends org.omg.PortableServer.S
 		return (String[]) __ids.clone();
 	}
 
+	/**
+	 * @return register
+	 */
 	public ClassificationRegister _this() {
 		return ClassificationRegisterHelper.getInstance().narrow(super._this_object());
 	}
 
+	/**
+	 * @param orb
+	 * @return register
+	 */
 	public ClassificationRegister _this(org.omg.CORBA.ORB orb) {
 		return ClassificationRegisterHelper.getInstance().narrow(super._this_object(orb));
 	}

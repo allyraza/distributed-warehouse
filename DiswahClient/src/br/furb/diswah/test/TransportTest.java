@@ -17,6 +17,11 @@ import br.furb.diswah.transport.TransportProperties;
  */
 public class TransportTest {
 	
+	/**
+	 * @param args
+	 * @throws CommunicationException
+	 * @throws RemoteException
+	 */
 	public static void main(String[] args) throws CommunicationException, RemoteException {
 		
 		TransportProperties tp = new TransportProperties();

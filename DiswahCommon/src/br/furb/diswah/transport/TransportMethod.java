@@ -6,8 +6,17 @@ package br.furb.diswah.transport;
  */
 public enum TransportMethod {
 
+	/**
+	 * 
+	 */
 	CORBA,
+	/**
+	 * 
+	 */
 	RMI,
-	RPC
+	/**
+	 * 
+	 */
+	RPC;
 	
 }

@@ -17,14 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
-import br.furb.diswah.UserSession;
-import br.furb.diswah.connection.PropertiesBundle;
-import br.furb.diswah.model.User;
 import br.furb.diswah.resource.MessageBundle;
-import br.furb.diswah.service.LoginService;
-import br.furb.diswah.transport.TransportFactory;
-import br.furb.diswah.transport.TransportMethod;
-import br.furb.diswah.transport.TransportProperties;
 
 /**
  * 
@@ -71,9 +64,7 @@ public class LoginScreen extends JFrame{
 		setMinimumSize(new Dimension(300, 300));
         setResizable(false);
         
-        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dialogSize = getSize();
-        setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
+        setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -119,17 +110,16 @@ public class LoginScreen extends JFrame{
 		
 		btLogin = new JButton(MessageBundle.getMessage("frame.login.button.login"));
 		btLogin.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransportProperties prop = new TransportProperties();
-				prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
+				//TransportProperties prop = new TransportProperties();
+				//prop.setHost(PropertiesBundle.getProperty("server.rmi.host"));
 				try {
-					LoginService service = TransportFactory.createCommunication(prop, TransportMethod.RMI)
-														   .requestInterface(LoginService.class, new Object[]{});
-					User user = service.login(tfLogin.getText(), pfPassword.getText());
+					//LoginService service = TransportFactory.createCommunication(prop, TransportMethod.RMI)
+					//									   .requestInterface(LoginService.class, new Object[]{});
+					//User user = service.login(tfLogin.getText(), pfPassword.getText());
 					
-					UserSession.getInstance().initSession(user);
+					//UserSession.getInstance().initSession(user);
 					
 					EventQueue.invokeLater(new Runnable() {
 						@Override
@@ -161,6 +151,9 @@ public class LoginScreen extends JFrame{
 		return pnButtons;
 	}
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new LoginScreen().setVisible(true);
 	}

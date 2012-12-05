@@ -8,21 +8,45 @@ import netbula.ORPC.XDTString;
 import netbula.ORPC.XDTvoid;
 import netbula.ORPC.rpc_err;
 import br.furb.diswah.model.Sale;
-import br.furb.diswah.register.SaleRegister;
 import br.furb.diswah.util.Utils;
 
+/**
+ * @author andre.almeida
+ *
+ */
 public class SaleRegisterClient extends ClientGeneric implements SaleRegister{
 
+	/**
+	 * @throws rpc_err
+	 */
 	public SaleRegisterClient() throws rpc_err { };
 
+	/**
+	 * @param host
+	 * @param proto
+	 * @throws rpc_err
+	 */
 	public SaleRegisterClient(String host, String proto) throws rpc_err {
 		super(host, SaleRegister._def_pno, SaleRegister._def_vno, proto);
 	}
 
+	/**
+	 * @param host
+	 * @param proto
+	 * @param port
+	 * @throws rpc_err
+	 */
 	public SaleRegisterClient(String host, String proto, int port) throws rpc_err {
 		super(host, proto, port, SaleRegister._def_pno, SaleRegister._def_vno);
 	}
 
+	/**
+	 * @param host
+	 * @param prog
+	 * @param ver
+	 * @param proto
+	 * @throws rpc_err
+	 */
 	public SaleRegisterClient(String host,  int prog, int ver, String proto) throws rpc_err {
 		super(host, prog, ver, proto);
 	}

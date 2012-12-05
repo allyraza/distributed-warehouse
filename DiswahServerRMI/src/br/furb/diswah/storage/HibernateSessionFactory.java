@@ -13,6 +13,9 @@ public final class HibernateSessionFactory {
 	private static SessionFactory sessionFactory;
 	private static Session session;
 	
+	/**
+	 * @return session
+	 */
 	@SuppressWarnings("deprecation")
 	public static Session openSession() {
 		if(sessionFactory == null){
@@ -26,6 +29,9 @@ public final class HibernateSessionFactory {
 		return session;
 	}
 
+	/**
+	 * 
+	 */
 	public static void closeSession() {
 		session.getTransaction().commit();
 		session.close();

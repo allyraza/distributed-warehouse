@@ -8,7 +8,6 @@ import netbula.ORPC.XDTString;
 import netbula.ORPC.XDTvoid;
 import netbula.ORPC.rpc_err;
 import br.furb.diswah.model.Client;
-import br.furb.diswah.register.ClientRegister;
 import br.furb.diswah.util.Utils;
 
 /**
@@ -17,16 +16,37 @@ import br.furb.diswah.util.Utils;
  */
 public class ClientRegisterClient extends ClientGeneric implements ClientRegister{
 
+	/**
+	 * @throws rpc_err
+	 */
 	public ClientRegisterClient() throws rpc_err { };
 
+	/**
+	 * @param host
+	 * @param proto
+	 * @throws rpc_err
+	 */
 	public ClientRegisterClient(String host, String proto) throws rpc_err {
 		super(host, ClientRegister._def_pno, ClientRegister._def_vno, proto);
 	}
 
+	/**
+	 * @param host
+	 * @param proto
+	 * @param port
+	 * @throws rpc_err
+	 */
 	public ClientRegisterClient(String host, String proto, int port) throws rpc_err {
 		super(host, proto, port, ClientRegister._def_pno, ClientRegister._def_vno);
 	}
 
+	/**
+	 * @param host
+	 * @param prog
+	 * @param ver
+	 * @param proto
+	 * @throws rpc_err
+	 */
 	public ClientRegisterClient(String host,  int prog, int ver, String proto) throws rpc_err {
 		super(host, prog, ver, proto);
 	}

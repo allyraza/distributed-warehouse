@@ -14,6 +14,9 @@ public class ProductRegisterHelper implements Helper<ProductRegister> {
 	
 	private static ProductRegisterHelper instance;
 	
+	/**
+	 * @return instance
+	 */
 	public static ProductRegisterHelper getInstance(){
 		if(instance == null)
 			instance = new ProductRegisterHelper();

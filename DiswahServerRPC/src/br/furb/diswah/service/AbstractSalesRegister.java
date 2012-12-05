@@ -2,8 +2,6 @@ package br.furb.diswah.service;
 
 import java.util.List;
 
-import br.furb.diswah.model.Sale;
-import br.furb.diswah.util.Utils;
 import netbula.ORPC.Svc;
 import netbula.ORPC.XDR;
 import netbula.ORPC.XDRError;
@@ -11,13 +9,26 @@ import netbula.ORPC.XDT;
 import netbula.ORPC.XDTLong;
 import netbula.ORPC.XDTString;
 import netbula.ORPC.XDTvoid;
+import br.furb.diswah.model.Sale;
+import br.furb.diswah.util.Utils;
 
+/**
+ * @author andre.almeida
+ *
+ */
 public abstract class AbstractSalesRegister extends Svc implements SalesRegister {
 
+	/**
+	 * @param prog
+	 * @param ver
+	 */
 	public AbstractSalesRegister(int prog, int ver) {
 		super(prog, ver);
 	}
 
+	/**
+	 * 
+	 */
 	public AbstractSalesRegister() {
 		super(SalesRegister._def_pno, SalesRegister._def_vno);
 	}

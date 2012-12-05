@@ -6,11 +6,20 @@ package br.furb.diswah.register;
  */
 public final class ClassificationRegisterHolder implements org.omg.CORBA.portable.Streamable {
 	
+	/**
+	 * 
+	 */
 	public ClassificationRegister value = null;
 
+	/**
+	 * 
+	 */
 	public ClassificationRegisterHolder() {
 	}
 
+	/**
+	 * @param initialValue
+	 */
 	public ClassificationRegisterHolder(ClassificationRegister initialValue) {
 		value = initialValue;
 	}

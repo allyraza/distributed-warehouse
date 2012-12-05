@@ -14,10 +14,19 @@ public abstract class BasicTransport {
 		this.properties = properties;
 	}
 	
+	/**
+	 * @return properties
+	 */
 	public TransportProperties getProperties() {
 		return properties;
 	}
 
+	/**
+	 * @param target
+	 * @param params
+	 * @return instance
+	 * @throws CommunicationException
+	 */
 	public abstract <T> T requestInterface(Class<T> target, Object[] params) throws CommunicationException;
 	
 }

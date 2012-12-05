@@ -32,7 +32,7 @@ public abstract class BasicEntity implements Serializable {
     private Date alter;
 
 	/**
-	 * @return
+	 * @return id
 	 */
 	public abstract Long getId();
 
@@ -42,8 +42,8 @@ public abstract class BasicEntity implements Serializable {
 	public abstract void setId(Long id);
 	
 	/**
-	 * @return
-	 */
+	 * @return status
+	 */ 
 	public Status getStatus() {
 		return status;
 	}
@@ -56,7 +56,7 @@ public abstract class BasicEntity implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return creation
 	 */
 	public Date getCreation() {
 		return creation;
@@ -70,7 +70,7 @@ public abstract class BasicEntity implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return alter
 	 */
 	public Date getAlter() {
 		return alter;

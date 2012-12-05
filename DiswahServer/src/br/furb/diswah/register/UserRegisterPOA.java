@@ -70,10 +70,17 @@ public abstract class UserRegisterPOA extends org.omg.PortableServer.Servant imp
 		return (String[]) __ids.clone();
 	}
 
+	/**
+	 * @return register
+	 */
 	public UserRegister _this() {
 		return UserRegisterHelper.getInstance().narrow(super._this_object());
 	}
 
+	/**
+	 * @param orb
+	 * @return register
+	 */
 	public UserRegister _this(org.omg.CORBA.ORB orb) {
 		return UserRegisterHelper.getInstance().narrow(super._this_object(orb));
 	}

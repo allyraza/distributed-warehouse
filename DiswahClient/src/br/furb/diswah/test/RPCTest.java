@@ -11,6 +11,11 @@ import br.furb.diswah.transport.TransportProperties;
  */
 public class RPCTest {
 	
+	/**
+	 * @param args
+	 * @throws rpc_err
+	 * @throws CommunicationException
+	 */
 	public static void main(String[] args) throws rpc_err, CommunicationException {
 		TransportProperties tp = new TransportProperties();
 		tp.setHost(PropertiesBundle.getProperty("server.sales.host"));

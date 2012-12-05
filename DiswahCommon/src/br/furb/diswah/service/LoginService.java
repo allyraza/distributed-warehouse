@@ -11,6 +11,12 @@ import br.furb.diswah.model.User;
  */
 public interface LoginService extends Remote{
 
+	/**
+	 * @param login
+	 * @param password
+	 * @return user
+	 * @throws RemoteException
+	 */
 	User login(String login, String password) throws RemoteException;
 	
 }

@@ -18,6 +18,9 @@ public class MainServer {
 	private static SaleRegisterImpl SALE_REGISTER;
 	private static SaleProductRegisterImpl SALE_PRODUCT_REGISTER;
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		instanciate();
 		run();

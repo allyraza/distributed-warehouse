@@ -8,7 +8,13 @@ import br.furb.diswah.resource.MessageBundle;
  */
 public enum Status {
 	
+	/**
+	 * 
+	 */
 	ACTIVE("status.active"),
+	/**
+	 * 
+	 */
 	INACTIVE("status.inactive");
 	
 	private String description;

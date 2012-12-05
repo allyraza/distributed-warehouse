@@ -18,10 +18,17 @@ import br.furb.diswah.util.Utils;
  */
 public abstract class AbstractClientRegister extends Svc implements ClientRegister {
 
+	/**
+	 * @param prog
+	 * @param ver
+	 */
 	public AbstractClientRegister(int prog, int ver) {
 		super(prog, ver);
 	}
 
+	/**
+	 * 
+	 */
 	public AbstractClientRegister() {
 		super(ClientRegister._def_pno, ClientRegister._def_vno);
 	}

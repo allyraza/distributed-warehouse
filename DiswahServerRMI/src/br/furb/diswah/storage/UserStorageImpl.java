@@ -23,6 +23,11 @@ public class UserStorageImpl extends AbstractEntityStorage<User> implements User
 		return User.class;
 	}
 
+	/**
+	 * @param login
+	 * @param password
+	 * @return user
+	 */
 	public User logUser(String login, String password){
 		List<User> users = null;
 		try {

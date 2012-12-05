@@ -36,6 +36,10 @@ public class JSONTest {
 			System.out.println(b);
 	}
 	
+	/**
+	 * @param a
+	 * @param b
+	 */
 	public static void test(int a, int b){
 		System.out.println(a + " - " + b);
 	}

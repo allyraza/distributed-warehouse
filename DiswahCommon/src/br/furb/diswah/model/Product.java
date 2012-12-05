@@ -45,38 +45,63 @@ public class Product extends BasicEntity{
 		return id;
 	}
 	
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return code
+	 */
 	public Long getCode() {
 		return code;
 	}
 
+	/**
+	 * @param code
+	 */
 	public void setCode(Long code) {
 		this.code = code;
 	}
 
+	/**
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * @return classification
+	 */
 	public Long getClassification() {
 		return classification;
 	}
 
+	/**
+	 * @param classification
+	 */
 	public void setClassification(Long classification) {
 		this.classification = classification;
 	}

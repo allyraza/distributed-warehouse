@@ -76,6 +76,7 @@ public class ClassificationView extends AbstractInternalPanel<Classification> {
 		return Classification.class;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void save() {
 		Classification classification = new Classification();

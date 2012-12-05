@@ -25,6 +25,10 @@ public class PropertiesBundle {
 		return properties;
 	}
 	
+	/**
+	 * @param key
+	 * @return string
+	 */
 	public static String getProperty(String key){
 		return String.valueOf(getProperties().get(key));
 	}

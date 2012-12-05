@@ -27,6 +27,10 @@ public class MainServer {
 	private static ProductRegisterImpl PRODUCT_REGISTER;
 	private static UserRegisterImpl USER_REGISTER;
 	
+	/**
+	 * @param args
+	 * @throws Throwable
+	 */
 	public static void main(String[] args) throws Throwable {
 		ORB orb = ORB.init(new String[]{"–ORBInitialPort", "2000"}, null);
 

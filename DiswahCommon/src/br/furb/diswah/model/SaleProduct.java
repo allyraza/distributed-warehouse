@@ -40,18 +40,30 @@ public class SaleProduct extends BasicEntity {
 		this.id = id;
 	}
 
+	/**
+	 * @return sale
+	 */
 	public Long getSale() {
 		return sale;
 	}
 
+	/**
+	 * @param sale
+	 */
 	public void setSale(Long sale) {
 		this.sale = sale;
 	}
 
+	/**
+	 * @return product
+	 */
 	public Long getProduct() {
 		return product;
 	}
 
+	/**
+	 * @param product
+	 */
 	public void setProduct(Long product) {
 		this.product = product;
 	}

@@ -12,6 +12,7 @@ import br.furb.diswah.model.BasicEntity;
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
+ * @param <T> 
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractEntityStorage<T extends BasicEntity> extends UnicastRemoteObject implements EntityStorage<T>{

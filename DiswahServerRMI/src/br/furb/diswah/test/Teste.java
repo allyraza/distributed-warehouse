@@ -15,6 +15,10 @@ import br.furb.diswah.storage.UserStorageImpl;
  */
 public class Teste {
 	
+	/**
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 
 		User u = new User();

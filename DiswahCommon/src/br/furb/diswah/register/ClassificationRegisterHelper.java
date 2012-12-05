@@ -21,6 +21,9 @@ public class ClassificationRegisterHelper implements Helper<ClassificationRegist
 	
 	private static ClassificationRegisterHelper instance;
 	
+	/**
+	 * @return instance
+	 */
 	public static ClassificationRegisterHelper getInstance(){
 		if(instance == null)
 			instance = new ClassificationRegisterHelper();

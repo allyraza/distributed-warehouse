@@ -17,11 +17,17 @@ public class DefaultTableModel extends AbstractTableModel {
 	private List<? extends BasicEntity> data;
 	private Class<? extends BasicEntity> clazz;
 	
+	/**
+	 * @param clazz
+	 */
 	public DefaultTableModel(Class<? extends BasicEntity> clazz){
 		this.clazz = clazz;
 		data = new ArrayList<BasicEntity>();
 	}
 	
+	/**
+	 * @param data
+	 */
 	public void refresh(List<? extends BasicEntity> data) {
 		if(data != null){
 			this.data = data;

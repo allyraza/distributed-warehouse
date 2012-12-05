@@ -11,6 +11,11 @@ public class TransportFactory {
 		System.setSecurityManager(null);
 	}
 
+	/**
+	 * @param properties
+	 * @param method
+	 * @return the transport
+	 */
 	public static BasicTransport createCommunication(TransportProperties properties, TransportMethod method) {
 		switch (method) {
 			case CORBA:

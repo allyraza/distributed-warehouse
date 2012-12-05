@@ -14,6 +14,9 @@ public class UserRegisterHelper implements Helper<UserRegister> {
 
 	private static UserRegisterHelper instance;
 	
+	/**
+	 * @return instance
+	 */
 	public static UserRegisterHelper getInstance(){
 		if(instance == null)
 			instance = new UserRegisterHelper();

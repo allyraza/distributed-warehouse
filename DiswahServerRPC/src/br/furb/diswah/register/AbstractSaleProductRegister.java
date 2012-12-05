@@ -18,10 +18,17 @@ import br.furb.diswah.util.Utils;
  */
 public abstract class AbstractSaleProductRegister extends Svc implements SaleProductRegister {
 
+	/**
+	 * @param prog
+	 * @param ver
+	 */
 	public AbstractSaleProductRegister(int prog, int ver) {
 		super(prog, ver);
 	}
 
+	/**
+	 * 
+	 */
 	public AbstractSaleProductRegister() {
 		super(SaleProductRegister._def_pno, SaleProductRegister._def_vno);
 	}

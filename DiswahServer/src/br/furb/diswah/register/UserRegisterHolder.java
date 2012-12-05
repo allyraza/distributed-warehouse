@@ -6,11 +6,20 @@ package br.furb.diswah.register;
  */
 public final class UserRegisterHolder implements org.omg.CORBA.portable.Streamable {
 	
+	/**
+	 * 
+	 */
 	public UserRegister value = null;
 
+	/**
+	 * 
+	 */
 	public UserRegisterHolder() {
 	}
 
+	/**
+	 * @param initialValue
+	 */
 	public UserRegisterHolder(UserRegister initialValue) {
 		value = initialValue;
 	}

@@ -47,8 +47,7 @@ public class SystemFrame extends JFrame {
 		setMinimumSize(new Dimension(500,600));
 		setMaximumSize(new Dimension(500,600));
 		setPreferredSize(new Dimension(500,600));
-		//setResizable(false);
-		
+		setLocationRelativeTo(null);
 	}
 
 	/**
@@ -151,11 +150,4 @@ public class SystemFrame extends JFrame {
 		setJMenuBar(menuBar);
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new SystemFrame().setVisible(true);
-	}
-
 }

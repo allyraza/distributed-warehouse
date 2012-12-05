@@ -21,7 +21,7 @@ public class MessageBundle {
     /**
      * @param key
      * @param arguments
-     * @return
+     * @return str
      */
     public static String getMessage(String key, Object... arguments) {
         try{
@@ -37,7 +37,7 @@ public class MessageBundle {
 
     /**
      * @param key
-     * @return
+     * @return str
      */
     public static String getMessage(String key) {
         return getMessage(key, new Object[]{});
@@ -45,7 +45,7 @@ public class MessageBundle {
     
     /**
      * @param key
-     * @return
+     * @return str
      */
     public static boolean containsKey(String key) {
     	try {

@@ -8,11 +8,29 @@ import br.furb.diswah.resource.MessageBundle;
  */
 public enum MeasurementUnit {
 
+	/**
+	 * 
+	 */
 	BOX("measurementunit.name.box","measurementunit.shortname.box"),
+	/**
+	 * 
+	 */
 	GRAM("measurementunit.name.gram","measurementunit.shortname.gram"),
+	/**
+	 * 
+	 */
 	KILOGRAM("measurementunit.name.kilogram","measurementunit.shortname.kilogram"),
+	/**
+	 * 
+	 */
 	LITER("measurementunit.name.liter","measurementunit.shortname.liter"),
+	/**
+	 * 
+	 */
 	PACKAGE("measurementunit.name.package","measurementunit.shortname.package"),
+	/**
+	 * 
+	 */
 	UNITY("measurementunit.name.unity","measurementunit.shortname.unity");
 	
 	

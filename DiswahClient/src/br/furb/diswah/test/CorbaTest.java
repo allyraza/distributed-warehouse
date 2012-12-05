@@ -13,6 +13,10 @@ import br.furb.diswah.transport.TransportProperties;
  */
 public class CorbaTest {
 	
+	/**
+	 * @param args
+	 * @throws CommunicationException
+	 */
 	public static void main(String[] args) throws CommunicationException {
 		TransportProperties properties = new TransportProperties();
 		properties.setHost(PropertiesBundle.getProperty("server.persistence.host"));

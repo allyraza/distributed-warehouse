@@ -10,7 +10,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.plaf.BorderUIResource.BevelBorderUIResource;
 
@@ -21,6 +20,7 @@ import br.furb.diswah.resource.MessageBundle;
 /**
  * 
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
+ * @param <T> 
  */
 public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPanel implements ActionListener {
 
@@ -30,6 +30,9 @@ public abstract class AbstractInternalPanel<T extends BasicEntity> extends JPane
 	private JButton btSave;
 	private JButton btClear;
 	
+	/**
+	 * 
+	 */
 	public AbstractInternalPanel(){
 		configPanel();
 		createComponents();
