@@ -11,7 +11,7 @@ import br.furb.diswah.model.BasicEntity;
  * @author André Felipe de Almeida {almeida.andref@gmail.com}
  * @param <T> 
  */
-public interface EntityStorage<T extends BasicEntity> extends Remote{
+public interface EntityStorage<T extends BasicEntity> extends Remote {
 
 	/**
 	 * @param value
